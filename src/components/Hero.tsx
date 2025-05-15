@@ -58,7 +58,7 @@ const Hero: React.FC = () => {
           className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards]"
           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          <span>אני כאן בשביל העסק שלך 🚀</span>
+          <span>🚀 דברו איתנו עכשיו</span>
         </Button>
       </div>
     </section>
