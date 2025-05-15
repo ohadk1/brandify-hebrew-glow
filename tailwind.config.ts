@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				brandlify: {
+					cyan: '#00E5FF',
+					purple: '#8F00FF',
+					red: '#FF3C3C',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,12 +90,37 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'star-move': {
+					'0%': { transform: 'translateY(0px)' },
+					'100%': { transform: 'translateY(2000px)' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'gradient-pulse': {
+					'0%, 100%': {
+						'background-position': '0% 50%'
+					},
+					'50%': {
+						'background-position': '100% 50%'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'star-move': 'star-move 50s linear infinite',
+				'float': 'float 6s ease-in-out infinite',
+				'gradient-pulse': 'gradient-pulse 10s ease infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic':
+					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+				'gradient-brand': 'linear-gradient(90deg, #00E5FF, #8F00FF, #FF3C3C)',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
