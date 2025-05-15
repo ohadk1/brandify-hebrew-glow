@@ -7,7 +7,6 @@ import Services from '@/components/Services';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import ContactForm from '@/components/ContactForm';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
-import { Sparkles } from 'lucide-react';
 
 const Index: React.FC = () => {
   // Add a smooth scroll handler for navigation links
@@ -24,30 +23,8 @@ const Index: React.FC = () => {
       }
     };
 
-    // Add intersection observer to reveal sections on scroll
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    document.querySelectorAll('.reveal-section').forEach((el) => {
-      observer.observe(el);
-    });
-
     document.addEventListener('click', handleScrollToAnchor);
-    return () => {
-      document.removeEventListener('click', handleScrollToAnchor);
-      document.querySelectorAll('.reveal-section').forEach((el) => {
-        observer.unobserve(el);
-      });
-    };
+    return () => document.removeEventListener('click', handleScrollToAnchor);
   }, []);
 
   return (
@@ -62,10 +39,9 @@ const Index: React.FC = () => {
         <ContactForm />
       </main>
       
-      <footer className="relative z-10 py-8 text-center text-gray-300 text-sm">
+      <footer className="relative z-10 py-6 text-center text-gray-500 text-sm">
         <div className="container mx-auto">
-          <div className="opacity-0 animate-[fadeIn_0.8s_ease-out_2s_forwards] flex items-center justify-center">
-            <Sparkles className="h-4 w-4 text-brandlify-cyan mr-2" />
+          <div className="opacity-0 animate-[fadeIn_0.8s_ease-out_2s_forwards]">
             © {new Date().getFullYear()} BRANDLIFY. כל הזכויות שמורות.
           </div>
         </div>
