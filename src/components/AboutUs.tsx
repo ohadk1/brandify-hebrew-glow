@@ -16,8 +16,8 @@ const AboutUs: React.FC = () => {
             <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red opacity-30 blur moving-gradient"></div>
             <div className="relative bg-black bg-opacity-80 p-8 rounded-lg border border-gray-700 shadow-xl transition-all duration-500 hover:transform hover:scale-[1.01] hover:shadow-2xl">
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                Brandlify הוא סטודיו למיתוג ונראות דיגיטלית. אנחנו לא יוצרים עיצוב יפה בלבד – אנחנו בונים מותג. 
-                עם ניסיון של עשרות פרויקטים, אנחנו יודעים איך לגרום לעסק שלך להיראות מקצועי, מבודל, ומוכן לצמיחה.
+                Brandlify הוא סטודיו בוטיק למיתוג שמלווה עסקים קטנים ובינוניים להיראות מקצועיים, מיוחדים ובלתי נשכחים.
+                אנחנו בונים מותגים עם נוכחות, חזון ונראות שיווקית שנשארת בראש של הלקוח.
               </p>
             </div>
           </div>

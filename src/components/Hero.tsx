@@ -6,7 +6,7 @@ const Hero: React.FC = () => {
   return (
     <section className="min-h-[85vh] flex flex-col justify-center items-center relative px-4 py-20">
       <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute inset-0 bg-gradient-radial from-transparent to-black opacity-80 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F2027] via-[#203A43] to-[#2C5364] opacity-80 z-0"></div>
       </div>
       
       <div className="max-w-4xl mx-auto text-center z-10 relative">
@@ -20,20 +20,20 @@ const Hero: React.FC = () => {
         </div>
 
         <h1 className="text-4xl md:text-6xl font-bold mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
-          <span className="text-gradient">BRANDLIFY</span>
-          <span className="block mt-2"> – מיתוג ובניית אתרים</span>
+          <span className="text-gradient">יצירת מותג</span>
+          <span className="block mt-2">שנראה בשווי מיליון דולר</span>
         </h1>
 
         <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.7s_forwards]">
-          אנחנו מתמחים בעיצוב לוגו לעסק, בניית אתר תדמית וחבילת מיתוג לעסקים קטנים. 
-          השילוב המושלם בין יצירתיות, טכנולוגיה ונראות מתקדמת – יעזור לעסק שלך לבלוט מעל המתחרים.
+          עיצוב זהות חזותית נועזת, לוגו מותאם אישית, אתרים ודפי נחיתה מודרניים – 
+          הכל מעוצב כדי להפוך את העסק שלך לבלתי נשכח ולמכור יותר.
         </p>
 
         <Button 
           className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards]"
           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          <span>🚀 דברו איתנו עכשיו</span>
+          <span>דברו איתנו</span>
         </Button>
       </div>
     </section>

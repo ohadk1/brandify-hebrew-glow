@@ -8,16 +8,18 @@ import ScrollReveal from '@/components/ScrollReveal';
 
 interface FormData {
   name: string;
-  email: string;
+  businessName: string;
   phone: string;
+  email: string;
   message: string;
 }
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
-    email: '',
+    businessName: '',
     phone: '',
+    email: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,8 +60,9 @@ const ContactForm: React.FC = () => {
       // Reset form
       setFormData({
         name: '',
-        email: '',
+        businessName: '',
         phone: '',
+        email: '',
         message: '',
       });
     } catch (error) {
@@ -80,7 +83,7 @@ const ContactForm: React.FC = () => {
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">
             <span className="relative inline-block">
-              רוצה מותג שמושך לקוחות?
+              רוצה להתחיל לבנות מותג?
               <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-brand transform animate-[expandWidth_0.6s_ease_forwards]"></div>
             </span>
           </h2>
@@ -107,14 +110,14 @@ const ContactForm: React.FC = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm font-medium">
-                    אימייל
+                  <label htmlFor="businessName" className="block text-sm font-medium">
+                    שם העסק
                   </label>
                   <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
+                    id="businessName"
+                    name="businessName"
+                    type="text"
+                    value={formData.businessName}
                     onChange={handleChange}
                     className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
                     required
@@ -137,8 +140,23 @@ const ContactForm: React.FC = () => {
                 </div>
                 
                 <div className="space-y-2">
+                  <label htmlFor="email" className="block text-sm font-medium">
+                    אימייל
+                  </label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
                   <label htmlFor="message" className="block text-sm font-medium">
-                    מה חשוב לך שנדע?
+                    במה נוכל לעזור לך?
                   </label>
                   <Textarea
                     id="message"

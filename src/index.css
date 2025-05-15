@@ -45,11 +45,13 @@
   html {
     direction: rtl;
     scroll-behavior: smooth;
+    font-family: 'Assistant', 'Arimo', 'Noto Sans Hebrew', sans-serif;
   }
 
   body {
-    @apply bg-black text-white font-sans antialiased;
+    @apply bg-black text-white antialiased;
     background-color: #000000;
+    background-image: linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
   }
 
   .text-gradient {
@@ -115,6 +117,31 @@
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.05); opacity: 0.8; }
     100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Sparkles effect */
+  .sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: white;
+    animation: sparkleAnimation 1.5s ease-in-out infinite;
+  }
+
+  @keyframes sparkleAnimation {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
   }
 }
 
@@ -182,4 +209,23 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+/* Add Google Fonts for Hebrew */
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Arimo:wght@400;500;600;700&family=Noto+Sans+Hebrew:wght@300;400;500;600;700&display=swap');
+
+/* 3D text effect */
+.text-3d {
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
 }
