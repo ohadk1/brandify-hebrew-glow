@@ -183,3 +183,34 @@
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+/* Add cosmic dust effect */
+.cosmic-dust {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+
+/* Space glow for UI elements */
+.space-glow {
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4), 0 0 30px rgba(143, 0, 255, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.space-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.6), 0 0 40px rgba(143, 0, 255, 0.3);
+}
+
+/* Galaxy swirl animation for loading states */
+@keyframes galaxySwirl {
+  0% { transform: rotate(0deg) scale(0.8); opacity: 0.8; }
+  50% { transform: rotate(180deg) scale(1.2); opacity: 1; }
+  100% { transform: rotate(360deg) scale(0.8); opacity: 0.8; }
+}
+
+.galaxy-swirl {
+  animation: galaxySwirl 10s infinite linear;
+}

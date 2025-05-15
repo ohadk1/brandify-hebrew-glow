@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
       <div className="max-w-4xl mx-auto text-center z-10 relative">
         <div className="inline-block relative mb-8 animate-float">
           <svg 
-            className="w-24 h-24 md:w-32 md:h-32 mx-auto" 
+            className="w-24 h-24 md:w-32 md:h-32 mx-auto space-glow" 
             viewBox="0 0 100 100" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -41,10 +41,10 @@ const Hero: React.FC = () => {
               </linearGradient>
             </defs>
           </svg>
-          <div className="absolute -inset-4 bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red rounded-full opacity-30 blur-xl animate-pulse"></div>
+          <div className="absolute -inset-4 bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red rounded-full opacity-30 blur-xl animate-pulse galaxy-swirl"></div>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards] space-glow">
           <span className="text-gradient">BRANDLIFY</span>
           <span className="block mt-2"> – מיתוג ובניית אתרים</span>
         </h1>
@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
         </p>
 
         <Button 
-          className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards]"
+          className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards] space-glow"
           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
         >
           <span>אני כאן בשביל העסק שלך 🚀</span>
