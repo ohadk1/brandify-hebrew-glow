@@ -1,4 +1,5 @@
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -56,7 +57,7 @@
   }
 
   .gradient-btn {
-    @apply relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-full group;
+    @apply relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-full;
   }
 
   .gradient-btn:before {
@@ -106,3 +107,4 @@
   50% { opacity: 1; }
   100% { opacity: 0; }
 }
+
