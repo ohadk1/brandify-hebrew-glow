@@ -11,36 +11,11 @@ const Hero: React.FC = () => {
       
       <div className="max-w-4xl mx-auto text-center z-10 relative">
         <div className="inline-block relative mb-8 animate-float">
-          <svg 
-            className="w-24 h-24 md:w-32 md:h-32 mx-auto" 
-            viewBox="0 0 100 100" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle 
-              cx="50" 
-              cy="50" 
-              r="45" 
-              stroke="url(#logoGradient)" 
-              strokeWidth="4" 
-              className="opacity-0 animate-[drawCircle_2s_ease-in-out_forwards]"
-            />
-            <path 
-              d="M30 50 L45 65 L70 35" 
-              stroke="url(#logoGradient)" 
-              strokeWidth="6" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-              className="opacity-0 animate-[drawCheck_1s_ease-in-out_0.8s_forwards]"
-            />
-            <defs>
-              <linearGradient id="logoGradient" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#00E5FF" />
-                <stop offset="50%" stopColor="#8F00FF" />
-                <stop offset="100%" stopColor="#FF3C3C" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <img 
+            src="/lovable-uploads/545b2919-a502-4994-8e4b-f826a13be127.png" 
+            alt="Brandlify Logo" 
+            className="w-24 h-24 md:w-32 md:h-32 mx-auto object-contain animate-[fadeIn_2s_ease-in-out]"
+          />
           <div className="absolute -inset-4 bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red rounded-full opacity-30 blur-xl animate-pulse"></div>
         </div>
 
