@@ -1,5 +1,4 @@
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,6 +44,7 @@
 
   html {
     direction: rtl;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -58,6 +58,12 @@
 
   .gradient-btn {
     @apply relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-full;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gradient-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 229, 255, 0.2);
   }
 
   .gradient-btn:before {
@@ -74,6 +80,41 @@
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+
+  /* Reveal animation for sections */
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .reveal-section.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered reveal for list items */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+  }
+
+  .stagger-item.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Pulse animation for highlights */
+  .pulse-highlight {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
   }
 }
 
@@ -108,3 +149,37 @@
   100% { opacity: 0; }
 }
 
+/* Enhance starfield with shooting stars */
+.shooting-star {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 50%, rgba(255, 255, 255, 0));
+  animation: shoot 3s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes shoot {
+  0% { 
+    transform: translateX(0) translateY(0) rotate(215deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { 
+    transform: translateX(-500px) translateY(500px) rotate(215deg);
+    opacity: 0;
+  }
+}
+
+/* Moving gradient background */
+.moving-gradient {
+  background: linear-gradient(90deg, #00E5FF, #8F00FF, #FF3C3C, #00E5FF);
+  background-size: 300% 300%;
+  animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

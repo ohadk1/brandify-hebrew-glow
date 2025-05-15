@@ -23,6 +23,7 @@ const Hero: React.FC = () => {
               r="45" 
               stroke="url(#logoGradient)" 
               strokeWidth="4" 
+              className="opacity-0 animate-[drawCircle_2s_ease-in-out_forwards]"
             />
             <path 
               d="M30 50 L45 65 L70 35" 
@@ -30,6 +31,7 @@ const Hero: React.FC = () => {
               strokeWidth="6" 
               strokeLinecap="round" 
               strokeLinejoin="round"
+              className="opacity-0 animate-[drawCheck_1s_ease-in-out_0.8s_forwards]"
             />
             <defs>
               <linearGradient id="logoGradient" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
@@ -42,18 +44,18 @@ const Hero: React.FC = () => {
           <div className="absolute -inset-4 bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red rounded-full opacity-30 blur-xl animate-pulse"></div>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
           <span className="text-gradient">BRANDLIFY</span>
           <span className="block mt-2"> – מיתוג ובניית אתרים</span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.7s_forwards]">
           אנחנו מתמחים בעיצוב לוגו לעסק, בניית אתר תדמית וחבילת מיתוג לעסקים קטנים. 
           השילוב המושלם בין יצירתיות, טכנולוגיה ונראות מתקדמת – יעזור לעסק שלך לבלוט מעל המתחרים.
         </p>
 
         <Button 
-          className="gradient-btn text-xl px-8 py-6"
+          className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards]"
           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
         >
           <span>אני כאן בשביל העסק שלך 🚀</span>
