@@ -53,7 +53,7 @@ const Services: React.FC = () => {
   };
 
   return (
-    <section id="services" className="py-20 px-4 backdrop-blur-[6px] bg-gradient-to-br from-[rgba(10,12,18,0.88)] to-[rgba(40,10,50,0.12)]">
+    <section id="services" className="py-20 px-4 bg-black bg-opacity-70">
       <div className="max-w-5xl mx-auto">
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">
@@ -76,8 +76,8 @@ const Services: React.FC = () => {
                 onOpenChange={() => toggleItem(index)}
                 className="relative group transition-all duration-300 hover:transform hover:scale-[1.01]"
               >
-                <div className="absolute -inset-0.5 rounded-[14px] bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-25 blur group-hover:opacity-60 transition duration-300"></div>
-                <div className="relative bg-black bg-opacity-70 rounded-[14px] border border-gray-800 shadow-lg transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(0,255,255,0.05)]">
+                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red opacity-30 blur moving-gradient"></div>
+                <div className="relative bg-black bg-opacity-90 p-6 rounded-lg border border-gray-800 shadow-xl transition-all duration-500 hover:shadow-2xl">
                   <CollapsibleTrigger className="w-full text-right px-6 py-5 flex items-center justify-between focus:outline-none">
                     <div className="flex items-start">
                       <div className="text-3xl ml-3 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C] bg-clip-text text-transparent font-bold self-start">{service.number}</div>
