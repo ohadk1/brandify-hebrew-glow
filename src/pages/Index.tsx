@@ -32,19 +32,53 @@ const Index: React.FC = () => {
       }
     };
 
+    // Enhance keyboard navigation
+    const handleKeyboardNavigation = (e: KeyboardEvent) => {
+      // Skip to content with Shift+Tab
+      if (e.key === 'Tab' && e.shiftKey && document.activeElement === document.body) {
+        e.preventDefault();
+        const mainContent = document.querySelector('main');
+        if (mainContent) {
+          (mainContent as HTMLElement).setAttribute('tabindex', '-1');
+          (mainContent as HTMLElement).focus();
+        }
+      }
+    };
+
     document.addEventListener('click', handleScrollToAnchor);
-    return () => document.removeEventListener('click', handleScrollToAnchor);
+    document.addEventListener('keydown', handleKeyboardNavigation);
+    
+    return () => {
+      document.removeEventListener('click', handleScrollToAnchor);
+      document.removeEventListener('keydown', handleKeyboardNavigation);
+    };
   }, []);
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
+      {/* Skip to content link for keyboard users */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:right-4 focus:z-50 focus:p-4 focus:bg-black focus:text-white focus:ring-2 focus:ring-white"
+      >
+        דלג לתוכן העיקרי
+      </a>
+
       {/* Darker gradient background underneath everything */}
-      <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#0b0f17] via-[#0a0d13] to-[#090c12] z-[-2]" aria-hidden="true"></div>
+      <div 
+        className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#0b0f17] via-[#0a0d13] to-[#090c12] z-[-2]" 
+        aria-hidden="true"
+      ></div>
       
       {/* Starfield above the gradient background but below content */}
       <Starfield />
       
-      <main className="relative z-10" role="main" aria-label="תוכן עיקרי">
+      <main 
+        id="main-content" 
+        className="relative z-10" 
+        role="main" 
+        aria-label="תוכן עיקרי"
+      >
         <Hero />
         <AboutUs />
         <Services />

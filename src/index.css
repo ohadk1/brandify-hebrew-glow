@@ -65,6 +65,75 @@
     @apply py-16 md:py-24;
   }
 
+  /* Accessibility Classes */
+  
+  /* High Contrast Mode */
+  .high-contrast-mode {
+    --background: 0 0% 0%;
+    --foreground: 60 100% 100%;
+    --border: 60 100% 80%;
+  }
+  
+  .high-contrast-mode body {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+  }
+  
+  .high-contrast-mode a,
+  .high-contrast-mode button {
+    background-color: #000000 !important;
+    color: #FFFF00 !important;
+    border: 2px solid #FFFF00 !important;
+  }
+  
+  .high-contrast-mode h1, 
+  .high-contrast-mode h2, 
+  .high-contrast-mode h3, 
+  .high-contrast-mode h4 {
+    color: #FFFF00 !important;
+  }
+
+  /* Dark Mode override */
+  .dark-mode {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 15%;
+    --muted: 0 0% 40%;
+  }
+  
+  .dark-mode body {
+    background-color: #101010 !important;
+    background-image: none !important;
+  }
+
+  /* Underline Links */
+  .underline-links a {
+    text-decoration: underline !important;
+    text-underline-offset: 4px !important;
+    text-decoration-thickness: 2px !important;
+  }
+
+  /* Keyboard Navigation */
+  .keyboard-navigation :focus {
+    outline: 3px solid #FFA500 !important;
+    outline-offset: 3px !important;
+  }
+  
+  .keyboard-navigation button:focus,
+  .keyboard-navigation a:focus,
+  .keyboard-navigation input:focus,
+  .keyboard-navigation textarea:focus,
+  .keyboard-navigation select:focus {
+    box-shadow: 0 0 0 3px #FFA500 !important;
+  }
+
+  /* Paused Animations */
+  .paused-animations * {
+    animation-play-state: paused !important;
+    transition: none !important;
+  }
+  
+  /* Original CSS */
   .text-gradient {
     @apply bg-gradient-brand bg-clip-text text-transparent bg-size-200 animate-gradient-pulse;
   }
