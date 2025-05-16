@@ -11,6 +11,7 @@ import TermsOfUse from "./pages/TermsOfUse";
 import CookiePolicy from "./pages/CookiePolicy";
 import Disclaimer from "./pages/Disclaimer";
 import Accessibility from "./pages/Accessibility";
+import AccessibilityWidget from "./components/AccessibilityWidget";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <AccessibilityWidget />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

@@ -24,6 +24,10 @@ const Index: React.FC = () => {
           element.scrollIntoView({ behavior: 'smooth' });
           // Add margin for header
           window.scrollBy(0, -100);
+          // Set focus to the element for screen reader users
+          element.setAttribute('tabindex', '-1');
+          element.focus();
+          element.removeAttribute('tabindex');
         }
       }
     };
@@ -35,12 +39,12 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen relative overflow-x-hidden">
       {/* Darker gradient background underneath everything */}
-      <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#0b0f17] via-[#0a0d13] to-[#090c12] z-[-2]"></div>
+      <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#0b0f17] via-[#0a0d13] to-[#090c12] z-[-2]" aria-hidden="true"></div>
       
       {/* Starfield above the gradient background but below content */}
       <Starfield />
       
-      <main className="relative z-10">
+      <main className="relative z-10" role="main" aria-label="תוכן עיקרי">
         <Hero />
         <AboutUs />
         <Services />
