@@ -80,7 +80,7 @@ const Services: React.FC = () => {
                 <div className="relative bg-black bg-opacity-90 p-6 rounded-lg border border-gray-800 shadow-xl transition-all duration-500 hover:shadow-2xl">
                   <CollapsibleTrigger className="w-full text-right px-6 py-5 flex items-center justify-between focus:outline-none">
                     <div className="flex items-start">
-                      <div className="text-3xl ml-3 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C] bg-clip-text text-transparent font-bold self-start">{service.number}</div>
+                      <div className="text-3xl ml-5 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C] bg-clip-text text-transparent font-bold self-start">{service.number}</div>
                       <h3 className="text-xl md:text-2xl font-bold text-white">{service.title}</h3>
                     </div>
                     <ChevronDown className={cn(

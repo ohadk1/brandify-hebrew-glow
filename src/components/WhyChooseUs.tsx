@@ -1,26 +1,31 @@
 
 import React from 'react';
-import { Check } from 'lucide-react';
+import { Check, Clock, Shield, Mouse, Rocket, Zap } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 
 const whyChooseItems = [
   {
+    icon: <Shield size={20} className="text-brandlify-cyan" />,
     title: "מותג שנראה באמת כמו מותג",
     content: "אנחנו יוצרים זהות עסקית שנראית, נשמעת ומרגישה כמו מותג אמיתי."
   },
   {
+    icon: <Clock size={20} className="text-brandlify-cyan" />,
     title: "תהליך ממוקד, אישי ומהיר",
     content: "שקיפות מלאה, ליווי צמוד, תוצרים איכותיים בלוחות זמנים קצרים."
   },
   {
+    icon: <Zap size={20} className="text-brandlify-cyan" />,
     title: "עיצוב שממיר – לא רק מרשים",
     content: "אנחנו בונים חוויית משתמש שמובילה לתוצאה – לא רק ליופי."
   },
   {
+    icon: <Mouse size={20} className="text-brandlify-cyan" />,
     title: "מסר ברור שמחובר לקהל שלך",
     content: "התוכן והעיצוב מדברים את השפה של הלקוח האידיאלי שלך."
   },
   {
+    icon: <Rocket size={20} className="text-brandlify-cyan" />,
     title: "רספונסיבי לחלוטין – גם למובייל",
     content: "האתר שלך ייראה פיקס בכל מסך ויגרום לגולשים להרגיש בבית."
   }
@@ -46,12 +51,12 @@ const WhyChooseUs: React.FC = () => {
               className="stagger-item"
               delay={index * 150}
             >
-              <div className="group relative overflow-hidden rounded-xl">
-                <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-0 group-hover:opacity-30 blur transition duration-300"></div>
-                <div className="relative bg-black bg-opacity-70 rounded-xl p-6 border-b border-gray-800">
+              <div className="group relative overflow-hidden rounded-lg">
+                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-0 group-hover:opacity-30 blur transition duration-300"></div>
+                <div className="relative bg-black bg-opacity-70 rounded-lg p-6 border border-gray-800 shadow-lg transition-all duration-300 group-hover:shadow-xl">
                   <div className="flex items-start gap-4">
                     <div className="bg-gradient-to-r from-[#00E5FF] to-[#8F00FF] rounded-full p-1.5 flex-shrink-0 pulse-highlight">
-                      <Check size={18} className="text-white" />
+                      {item.icon}
                     </div>
                     <div>
                       <h3 className="font-bold text-lg mb-2">{item.title}</h3>

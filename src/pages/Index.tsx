@@ -5,6 +5,8 @@ import Hero from '@/components/Hero';
 import AboutUs from '@/components/AboutUs';
 import Services from '@/components/Services';
 import WhyChooseUs from '@/components/WhyChooseUs';
+import LogoGallery from '@/components/LogoGallery';
+import Testimonial from '@/components/Testimonial';
 import ContactForm from '@/components/ContactForm';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
 
@@ -41,7 +43,9 @@ const Index: React.FC = () => {
         <Hero />
         <AboutUs />
         <Services />
+        <LogoGallery />
         <WhyChooseUs />
+        <Testimonial />
         <ContactForm />
       </main>
       
