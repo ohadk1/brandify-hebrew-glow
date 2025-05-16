@@ -53,7 +53,7 @@ const Services: React.FC = () => {
   };
 
   return (
-    <section id="services" className="py-20 px-4 backdrop-blur-lg bg-[rgba(0,0,0,0.7)]">
+    <section id="services" className="py-20 px-4 backdrop-blur-[6px] bg-gradient-to-br from-[rgba(10,12,18,0.88)] to-[rgba(40,10,50,0.12)]">
       <div className="max-w-5xl mx-auto">
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">
@@ -74,22 +74,22 @@ const Services: React.FC = () => {
               <Collapsible 
                 open={openItems[index]} 
                 onOpenChange={() => toggleItem(index)}
-                className="relative group"
+                className="relative group transition-all duration-300 hover:transform hover:scale-[1.01]"
               >
                 <div className="absolute -inset-0.5 rounded-[14px] bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-25 blur group-hover:opacity-60 transition duration-300"></div>
-                <div className="relative bg-black bg-opacity-70 rounded-[14px] border border-gray-800 shadow-lg transition-all duration-300">
+                <div className="relative bg-black bg-opacity-70 rounded-[14px] border border-gray-800 shadow-lg transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(0,255,255,0.05)]">
                   <CollapsibleTrigger className="w-full text-right px-6 py-5 flex items-center justify-between focus:outline-none">
                     <div className="flex items-start">
-                      <div className="text-3xl mr-4 text-gradient font-bold self-start">{service.number}</div>
-                      <h3 className="text-xl md:text-2xl font-bold">{service.title}</h3>
+                      <div className="text-3xl ml-3 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C] bg-clip-text text-transparent font-bold self-start">{service.number}</div>
+                      <h3 className="text-xl md:text-2xl font-bold text-white">{service.title}</h3>
                     </div>
                     <ChevronDown className={cn(
-                      "h-5 w-5 transition-transform duration-300",
+                      "h-5 w-5 transition-transform duration-400 ease-in-out",
                       openItems[index] ? "rotate-180" : ""
                     )} />
                   </CollapsibleTrigger>
-                  <CollapsibleContent className="data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-                    <div className="px-6 pb-5 pt-1 text-gray-300 whitespace-pre-line">
+                  <CollapsibleContent className="accordion-content">
+                    <div className="px-6 pb-5 pt-1 text-[#D0D0D0] whitespace-pre-line">
                       {service.description}
                     </div>
                   </CollapsibleContent>
