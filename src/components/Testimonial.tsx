@@ -14,7 +14,7 @@ const Testimonial: React.FC = () => {
               <div className="flex flex-col items-center text-center">
                 <Quote size={30} className="text-brandlify-cyan mb-4 opacity-70" />
                 <p className="text-xl md:text-2xl font-light text-white leading-relaxed mb-6">
-                  "Brandlify elevated my entire visual identity – I got 3x more leads within a week 🙌"
+                  "ברנדליפי העלו את התדמית הויזואלית שלי לרמה חדשה – קיבלתי פי 3 יותר לידים תוך שבוע 🙌"
                 </p>
                 <div className="w-20 h-1 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C]"></div>
               </div>
