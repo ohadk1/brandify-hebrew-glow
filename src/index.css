@@ -84,6 +84,20 @@
     100% { background-position: 0% 50%; }
   }
 
+  /* Custom Accordion Styling */
+  [data-state="open"] .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion-item {
+    transition: all 0.3s ease;
+  }
+
+  .accordion-item:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+  }
+
   /* Reveal animation for sections */
   .reveal-section {
     opacity: 0;
@@ -228,4 +242,27 @@
                0 5px 10px rgba(0,0,0,.25),
                0 10px 10px rgba(0,0,0,.2),
                0 20px 20px rgba(0,0,0,.15);
+}
+
+/* Custom styling for accordion */
+.accordion-trigger {
+  @apply flex justify-between items-center w-full p-4 text-left transition-all;
+}
+
+.accordion-content {
+  @apply overflow-hidden transition-all;
+}
+
+/* Ensure accordion icons rotate properly */
+[data-state=open] > .accordion-trigger svg {
+  transform: rotate(180deg);
+}
+
+/* Add subtle hover effect to accordion items */
+.accordion-item {
+  @apply transition-all duration-300;
+}
+
+.accordion-item:hover {
+  @apply shadow-lg;
 }
