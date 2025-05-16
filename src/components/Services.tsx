@@ -3,12 +3,36 @@ import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 
 const serviceItems = [
-  "עיצוב לוגו 2D / 3D מותאם אישית",
-  "בניית שפה גרפית מלאה למותג",
-  "עיצוב דפי נחיתה ואתרי תדמית",
-  "חיבורים לאוטומציות ו-CRM",
-  "תכנון ויזואלי שיווקי ממוקד קהל",
-  "שירות אישי וליווי צמוד"
+  {
+    number: 1,
+    title: "עיצוב לוגו 2D / 3D מותאם אישית",
+    description: "לוגו שמספר סיפור ולא רק \"נראה יפה\". מותאם לעסק לפי התחום, הקהל והחזון – כולל אפשרות לאנימציה."
+  },
+  {
+    number: 2,
+    title: "בניית שפה גרפית מלאה למותג",
+    description: "יצירת שפה חזותית עקבית לעסק: צבעים, פונטים, אייקונים וסגנון. מבטיחה מיתוג אחיד וזכיר לאורך כל נקודת מגע."
+  },
+  {
+    number: 3,
+    title: "עיצוב דפי נחיתה ואתרי תדמית",
+    description: "אתרים מהירים, יפים ומותאמים להמרה. מבנה נכון + עיצוב ממוקד מניעים לפעולה מיידית."
+  },
+  {
+    number: 4,
+    title: "חיבורים לאוטומציות ו־CRM",
+    description: "כל ליד נשמר ונשלח אוטומטית – לווטסאפ, Sheets או CRM. תהליך מכירה מסודר בלי לפספס אף פנייה."
+  },
+  {
+    number: 5,
+    title: "תכנון ויזואלי שיווקי ממוקד קהל",
+    description: "עיצוב שנשען על הבנה של הקהל שלך, הצרכים והטריגרים שלו. כל פיקסל מדויק – לא סתם \"יפה\"."
+  },
+  {
+    number: 6,
+    title: "שירות אישי וליווי צמוד",
+    description: "זמינות גבוהה, גישה מקצועית, והבנה אמיתית של העסק שלך. אנחנו איתך בכל שלב – מבריף ועד תוצאה."
+  }
 ];
 
 const Services: React.FC = () => {
@@ -19,7 +43,7 @@ const Services: React.FC = () => {
           <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">
             <span className="relative inline-block">
               השירותים שלנו
-              <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-brand transform animate-[expandWidth_0.6s_ease_forwards]"></div>
+              <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C] transform animate-[expandWidth_0.6s_ease_forwards]"></div>
             </span>
           </h2>
         </ScrollReveal>
@@ -31,11 +55,14 @@ const Services: React.FC = () => {
               className="stagger-item" 
               delay={index * 100}
             >
-              <div className="relative group">
-                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red opacity-30 blur group-hover:opacity-100 transition duration-300"></div>
-                <div className="relative p-6 bg-black bg-opacity-80 rounded-lg border border-gray-800 h-full flex items-center transition duration-300 transform group-hover:translate-y-[-5px] shadow-xl">
-                  <div className="mr-4 text-3xl text-gradient font-bold">{index + 1}</div>
-                  <p className="text-lg md:text-xl font-bold">{service}</p>
+              <div className="relative group h-full">
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-30 blur group-hover:opacity-70 transition duration-300"></div>
+                <div className="relative p-6 bg-black bg-opacity-80 rounded-2xl border border-gray-800 h-full flex flex-col transition duration-300 transform group-hover:translate-y-[-5px] shadow-xl">
+                  <div className="flex items-start mb-4">
+                    <div className="text-3xl mr-4 text-gradient font-bold self-start">{service.number}</div>
+                    <h3 className="text-xl md:text-2xl font-bold">{service.title}</h3>
+                  </div>
+                  <p className="text-gray-300 mt-2">{service.description}</p>
                 </div>
               </div>
             </ScrollReveal>

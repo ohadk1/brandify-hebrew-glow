@@ -24,7 +24,7 @@ const Starfield: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // ✅ URLs של תמונות כוכבים ברקע
+    // URLs של תמונות כוכבים ברקע
     const backgroundImageUrls = [
       '/lovable-uploads/38f9e8c4-e144-49f5-9b1c-e75b55cc79af.png',
       '/lovable-uploads/14c344fe-3a3f-44b2-a719-bc5b75754d77.png',
@@ -52,18 +52,19 @@ const Starfield: React.FC = () => {
 
     const initStars = () => {
       const stars: Star[] = [];
-      const starCount = Math.floor((canvas.width * canvas.height) / 600);
-      const starColors = ['#ffffff', '#fffacd', '#f8f8ff', '#e6e6fa'];
+      // Reduce star count and create more subtle stars
+      const starCount = Math.floor((canvas.width * canvas.height) / 900);
+      const starColors = ['#ffffff', '#f8f8ff', '#e6e6fa'];
 
       for (let i = 0; i < starCount; i++) {
         stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 1.2 + 0.3,
-          opacity: Math.random() * 0.6 + 0.3,
-          speed: Math.random() * 0.3 + 0.1,
+          size: Math.random() * 0.8 + 0.2, // Smaller stars
+          opacity: Math.random() * 0.4 + 0.2, // Lower opacity
+          speed: Math.random() * 0.15 + 0.05, // Slower movement
           color: starColors[Math.floor(Math.random() * starColors.length)],
-          parallaxFactor: Math.random() * 0.03 + 0.01,
+          parallaxFactor: Math.random() * 0.02 + 0.01, // Reduced parallax
         });
       }
 
@@ -81,21 +82,21 @@ const Starfield: React.FC = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // רקע שקוף (לא שחור מלא) כדי לאפשר לשכבות אחרות להיראות
-      ctx.fillStyle = 'rgba(0,0,0,0.2)';
+      ctx.fillStyle = 'rgba(0,0,0,0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // פרלקסה עם תמונות הרקע
-      const parallaxX = (mousePositionRef.current.x - canvas.width / 2) / 50;
-      const parallaxY = (mousePositionRef.current.y - canvas.height / 2) / 50;
+      // פרלקסה עדינה יותר עם תמונות הרקע
+      const parallaxX = (mousePositionRef.current.x - canvas.width / 2) / 70;
+      const parallaxY = (mousePositionRef.current.y - canvas.height / 2) / 70;
 
       if (backgroundImagesRef.current.length > 0) {
         backgroundImagesRef.current.forEach((img, index) => {
-          const alpha = 0.4 + index * 0.2;
+          const alpha = 0.3 + index * 0.15; // Reduced opacity
           ctx.globalAlpha = alpha;
           ctx.drawImage(
             img,
-            -20 + parallaxX * (0.3 + index * 0.3),
-            -20 + parallaxY * (0.3 + index * 0.3),
+            -20 + parallaxX * (0.2 + index * 0.2), // Reduced parallax movement
+            -20 + parallaxY * (0.2 + index * 0.2),
             canvas.width + 40,
             canvas.height + 40
           );
@@ -103,10 +104,11 @@ const Starfield: React.FC = () => {
         ctx.globalAlpha = 1;
       }
 
-      // ציור כוכבים
-      const t = Date.now() * 0.001;
+      // ציור כוכבים עם הבהוב מעודן יותר
+      const t = Date.now() * 0.0005; // Much slower animation
       starsRef.current.forEach((star) => {
-        const twinkle = Math.sin(t * 3 + star.x + star.y) * 0.5 + 0.5;
+        // Very subtle twinkle effect
+        const twinkle = Math.sin(t * 2 + star.x + star.y) * 0.3 + 0.7;
 
         const offsetX =
           (mousePositionRef.current.x - canvas.width / 2) * star.parallaxFactor;
@@ -128,7 +130,8 @@ const Starfield: React.FC = () => {
           .padStart(2, '0')}`;
         ctx.fill();
 
-        star.y += star.speed;
+        // Slower movement
+        star.y += star.speed * 0.5;
         if (star.y > canvas.height) {
           star.y = 0;
           star.x = Math.random() * canvas.width;

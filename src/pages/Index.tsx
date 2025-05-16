@@ -28,8 +28,11 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0F2027] via-[#203A43] to-[#2C5364] text-white relative overflow-x-hidden">
-      {/* Starfield is placed here to be above the background gradient but below the content */}
+    <div className="min-h-screen relative overflow-x-hidden">
+      {/* Fixed gradient background underneath everything */}
+      <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#0F2027] via-[#203A43] to-[#2C5364] z-[-1]"></div>
+      
+      {/* Starfield above the gradient background but below content */}
       <Starfield />
       
       <main className="relative z-10">
@@ -40,7 +43,7 @@ const Index: React.FC = () => {
         <ContactForm />
       </main>
       
-      <footer className="relative z-10 py-6 text-center text-gray-500 text-sm">
+      <footer className="relative z-10 py-6 text-center text-gray-400 text-sm">
         <div className="container mx-auto">
           <div className="opacity-0 animate-[fadeIn_0.8s_ease-out_2s_forwards]">
             © {new Date().getFullYear()} BRANDLIFY. כל הזכויות שמורות.
