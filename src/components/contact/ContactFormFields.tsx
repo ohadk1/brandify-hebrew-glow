@@ -34,7 +34,7 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
 }) => {
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form id="contact-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="name"
@@ -155,11 +155,11 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
         
         <Button
           type="submit"
-          className="gradient-btn w-full text-lg py-6 transition-transform duration-300 hover:scale-[1.02]"
+          className="gradient-btn w-full text-xl py-6 font-bold transition-transform duration-300 hover:scale-[1.02]"
           disabled={isSubmitting}
         >
           <span>
-            {isSubmitting ? "שולח..." : "שלחו לי פרטים"}
+            {isSubmitting ? "שולח..." : "לקבלת הצעה משתלמת – לחץ כאן"}
           </span>
         </Button>
       </form>

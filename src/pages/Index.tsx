@@ -49,7 +49,7 @@ const Index: React.FC = () => {
         <ContactForm />
       </main>
       
-      <footer className="relative z-10 py-6 text-center text-gray-400 text-sm">
+      <footer className="relative z-10 py-10 text-center text-gray-400 text-sm">
         <div className="container mx-auto">
           <div className="opacity-0 animate-[fadeIn_0.8s_ease-out_2s_forwards]">
             © {new Date().getFullYear()} BRANDLIFY. כל הזכויות שמורות.

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
+import { Button } from '@/components/ui/button';
 
 const FormHeader: React.FC = () => {
   return (
@@ -18,6 +19,17 @@ const FormHeader: React.FC = () => {
         <p className="text-center text-gray-200 mb-12">
           ⚡ מספר המקומות השבוע מוגבל – שלחו פרטים ונחזור אליכם בהקדם
         </p>
+      </ScrollReveal>
+      
+      <ScrollReveal delay={150}>
+        <div className="text-center mb-12">
+          <Button 
+            className="gradient-btn text-xl px-8 py-6 font-bold"
+            onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <span>לקבלת הצעה משתלמת – לחץ כאן</span>
+          </Button>
+        </div>
       </ScrollReveal>
     </>
   );

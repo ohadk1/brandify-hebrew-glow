@@ -9,6 +9,8 @@ import FormContainer from './contact/FormContainer';
 import ContactFormFields from './contact/ContactFormFields';
 import { contactFormSchema, type ContactFormValues } from '@/lib/schemas/contactFormSchema';
 import { submitContactForm } from '@/lib/api/contactForm';
+import UrgencyStrip from './contact/UrgencyStrip';
+import TrustStatement from './contact/TrustStatement';
 
 const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,6 +62,7 @@ const ContactForm: React.FC = () => {
     <section id="contact" className="py-20 px-4 bg-black bg-opacity-70">
       <div className="max-w-4xl mx-auto">
         <FormHeader />
+        <UrgencyStrip />
         <FormContainer>
           <ContactFormFields 
             form={form} 
@@ -67,6 +70,7 @@ const ContactForm: React.FC = () => {
             onSubmit={onSubmit} 
           />
         </FormContainer>
+        <TrustStatement />
       </div>
     </section>
   );

@@ -17,21 +17,20 @@ const Hero: React.FC = () => {
           <div className="absolute -inset-4 bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red rounded-full opacity-30 blur-xl animate-pulse"></div>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
-          <span className="text-gradient">יצירת מותג</span>
-          <span className="block mt-2">שנראה בשווי מיליון דולר</span>
+        <h1 className="text-3xl md:text-5xl font-bold mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
+          <span className="text-gradient">מיתוג מקצועי במחיר נגיש לעסקים קטנים</span>
+          <span className="block mt-2">לוגו, אתר ודף נחיתה במקום אחד</span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.7s_forwards]">
-          עיצוב זהות חזותית נועזת, לוגו מותאם אישית, אתרים ודפי נחיתה מודרניים – 
-          הכל מעוצב כדי להפוך את העסק שלך לבלתי נשכח ולמכור יותר.
+        <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.7s_forwards]">
+          עיצוב בהתאמה אישית, תוך 3 ימי עבודה, כולל חיבור למערכת לידים – כל מה שצריך כדי לצאת לדרך.
         </p>
 
         <Button 
-          className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards]"
+          className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards] font-bold"
           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          <span>דברו איתנו</span>
+          <span>לקבלת הצעה משתלמת – לחץ כאן</span>
         </Button>
       </div>
     </section>
