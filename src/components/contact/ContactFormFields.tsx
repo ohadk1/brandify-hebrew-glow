@@ -121,9 +121,12 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
                   </SelectTrigger>
                   <SelectContent className="bg-gray-900 border-gray-700 text-white">
                     <SelectItem value="logo">לוגו בלבד</SelectItem>
+                    <SelectItem value="digital-card">כרטיס ביקור דיגיטלי</SelectItem>
+                    <SelectItem value="physical-card">כרטיס ביקור פיזי</SelectItem>
+                    <SelectItem value="media-post">פוסט פרסום מדיה</SelectItem>
                     <SelectItem value="landing">דף נחיתה</SelectItem>
-                    <SelectItem value="branding">מיתוג מלא</SelectItem>
-                    <SelectItem value="design">חבילת עיצוב</SelectItem>
+                    <SelectItem value="branding-site">אתר תדמית</SelectItem>
+                    <SelectItem value="ecommerce-site">אתר חנות</SelectItem>
                     <SelectItem value="other">אחר</SelectItem>
                   </SelectContent>
                 </Select>
