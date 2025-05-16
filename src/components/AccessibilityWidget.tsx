@@ -5,9 +5,6 @@ import { Accessibility } from 'lucide-react';
 declare global {
   interface Window {
     nagishLi?: any;
-    nagishLiScript?: {
-      init: () => void;
-    };
   }
 }
 
