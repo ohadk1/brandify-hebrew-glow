@@ -12,80 +12,88 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 
-interface FormData {
-  name: string;
-  businessName: string;
-  phone: string;
-  email: string;
-  service: string;
-  message: string;
-}
+const formSchema = z.object({
+  name: z.string().min(2, { message: "נא להזין שם מלא" }),
+  businessName: z.string().optional(),
+  phone: z.string().min(9, { message: "נא להזין מספר טלפון תקין" }),
+  email: z.string().email({ message: "נא להזין כתובת אימייל תקינה" }),
+  service: z.string().optional(),
+  message: z.string().optional(),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+const WEBHOOK_URL = 'https://hook.eu2.make.com/xkr9o2422keuybhhnicmob43o6eqpkmw';
 
 const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    businessName: '',
-    phone: '',
-    email: '',
-    service: '',
-    message: '',
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: '',
+      businessName: '',
+      phone: '',
+      email: '',
+      service: '',
+      message: '',
+    },
+  });
 
-  const handleServiceChange = (value: string) => {
-    setFormData(prev => ({ ...prev, service: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-
-    // Validate form
-    if (!formData.name || !formData.email || !formData.phone) {
-      toast({
-        title: "שגיאה",
-        description: "אנא מלא את כל השדות הנדרשים",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
+    
     try {
-      // In a real application, this would send the data to a server
-      console.log("Form data submitted:", formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      // Send data to Make webhook
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          businessName: data.businessName || '',
+          phone: data.phone,
+          email: data.email,
+          service: data.service || '',
+          message: data.message || '',
+          timestamp: new Date().toISOString(),
+          source: window.location.href,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
       toast({
         title: "הטופס נשלח בהצלחה!",
         description: "ניצור איתך קשר בהקדם",
       });
       
       // Reset form
-      setFormData({
-        name: '',
-        businessName: '',
-        phone: '',
-        email: '',
-        service: '',
-        message: '',
-      });
+      form.reset();
+      
     } catch (error) {
+      console.error('Form submission error:', error);
       toast({
         title: "שגיאה בשליחת הטופס",
         description: "אנא נסה שוב מאוחר יותר",
         variant: "destructive",
       });
-      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -113,108 +121,134 @@ const ContactForm: React.FC = () => {
           <div className="relative">
             <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red opacity-30 blur moving-gradient"></div>
             <div className="relative bg-black bg-opacity-90 p-6 md:p-10 rounded-lg border border-gray-800 shadow-xl transition-all duration-500 hover:shadow-2xl">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="block text-sm font-medium">
-                    שם מלא
-                  </label>
-                  <Input
-                    id="name"
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
                     name="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
-                    required
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel>שם מלא</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="businessName" className="block text-sm font-medium">
-                    שם העסק
-                  </label>
-                  <Input
-                    id="businessName"
-                    name="businessName"
-                    type="text"
-                    value={formData.businessName}
-                    onChange={handleChange}
-                    className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
-                    required
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="block text-sm font-medium">
-                    טלפון
-                  </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
-                    required
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm font-medium">
-                    אימייל
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
-                    required
-                  />
-                </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="service" className="block text-sm font-medium">
-                    איזה שירות מעניין אותך?
-                  </label>
-                  <Select onValueChange={handleServiceChange} value={formData.service}>
-                    <SelectTrigger className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan">
-                      <SelectValue placeholder="בחר שירות" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-900 border-gray-700 text-white">
-                      <SelectItem value="logo">לוגו בלבד</SelectItem>
-                      <SelectItem value="landing">דף נחיתה</SelectItem>
-                      <SelectItem value="branding">מיתוג מלא</SelectItem>
-                      <SelectItem value="design">חבילת עיצוב</SelectItem>
-                      <SelectItem value="other">אחר</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="message" className="block text-sm font-medium">
-                    במה נוכל לעזור לך?
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full border-gray-700 bg-gray-900 text-white h-32 transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
+                  <FormField
+                    control={form.control}
+                    name="businessName"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel>שם העסק</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <Button
-                  type="submit"
-                  className="gradient-btn w-full text-lg py-6 transition-transform duration-300 hover:scale-[1.02]"
-                  disabled={isSubmitting}
-                >
-                  <span>
-                    {isSubmitting ? "שולח..." : "שלחו לי פרטים"}
-                  </span>
-                </Button>
-              </form>
+
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel>טלפון</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="tel"
+                            className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel>אימייל</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="email"
+                            className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="service"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel>איזה שירות מעניין אותך?</FormLabel>
+                        <FormControl>
+                          <Select 
+                            onValueChange={field.onChange} 
+                            value={field.value}
+                          >
+                            <SelectTrigger className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan">
+                              <SelectValue placeholder="בחר שירות" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-gray-900 border-gray-700 text-white">
+                              <SelectItem value="logo">לוגו בלבד</SelectItem>
+                              <SelectItem value="landing">דף נחיתה</SelectItem>
+                              <SelectItem value="branding">מיתוג מלא</SelectItem>
+                              <SelectItem value="design">חבילת עיצוב</SelectItem>
+                              <SelectItem value="other">אחר</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel>במה נוכל לעזור לך?</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            {...field}
+                            className="w-full border-gray-700 bg-gray-900 text-white h-32 transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <Button
+                    type="submit"
+                    className="gradient-btn w-full text-lg py-6 transition-transform duration-300 hover:scale-[1.02]"
+                    disabled={isSubmitting}
+                  >
+                    <span>
+                      {isSubmitting ? "שולח..." : "שלחו לי פרטים"}
+                    </span>
+                  </Button>
+                </form>
+              </Form>
             </div>
           </div>
         </ScrollReveal>
