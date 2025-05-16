@@ -30,7 +30,7 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen relative overflow-x-hidden">
       {/* Fixed gradient background underneath everything */}
-      <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#0F2027] via-[#203A43] to-[#2C5364] z-[-1]"></div>
+      <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#0F2027] via-[#203A43] to-[#2C5364] z-[-2]"></div>
       
       {/* Starfield above the gradient background but below content */}
       <Starfield />

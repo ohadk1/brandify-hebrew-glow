@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,6 +97,25 @@
     box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
   }
 
+  /* Custom Collapsible Card Styling */
+  .collapsible-card {
+    @apply relative rounded-[14px] overflow-hidden transition-all duration-300;
+  }
+
+  .collapsible-card:hover {
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .collapsible-card .card-glow {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(143, 0, 255, 0.2), rgba(255, 60, 60, 0.2));
+  }
+
+  .collapsible-card:hover .card-glow {
+    @apply opacity-100;
+  }
+
   /* Reveal animation for sections */
   .reveal-section {
     opacity: 0;
@@ -156,6 +174,15 @@
       transform: scale(0);
       opacity: 0;
     }
+  }
+
+  /* Service Card Hover Effects */
+  .service-card {
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.15), 0 0 15px rgba(143, 0, 255, 0.15);
   }
 }
 
@@ -265,4 +292,35 @@
 
 .accordion-item:hover {
   @apply shadow-lg;
+}
+
+/* Add this new section for collapsible animations */
+@keyframes slideDown {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+[data-state="open"] > [data-radix-collapsible-content] {
+  animation: slideDown 300ms ease-out;
+}
+
+[data-state="closed"] > [data-radix-collapsible-content] {
+  animation: slideUp 300ms ease-out;
 }
