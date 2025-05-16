@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
         </h1>
 
         <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.7s_forwards]">
-          עיצוב בהתאמה אישית, תוך 3 ימי עבודה, כולל חיבור למערכת לידים – כל מה שצריך כדי לצאת לדרך.
+          עיצוב מותאם אישית במהירות, כולל חיבור למערכת לידים – כל מה שצריך כדי לצאת לדרך כבר בימים הקרובים.
         </p>
 
         <Button 
