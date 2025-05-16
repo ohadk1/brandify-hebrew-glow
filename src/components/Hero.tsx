@@ -5,9 +5,7 @@ import { Button } from '@/components/ui/button';
 const Hero: React.FC = () => {
   return (
     <section className="min-h-[85vh] flex flex-col justify-center items-center relative px-4 py-20">
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F2027] via-[#203A43] to-[#2C5364] opacity-80 z-0"></div>
-      </div>
+      {/* Removed solid background overlay to allow starfield to be visible behind content */}
       
       <div className="max-w-4xl mx-auto text-center z-10 relative">
         <div className="inline-block relative mb-8 animate-float">

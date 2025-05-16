@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 
 interface Star {
@@ -79,8 +80,8 @@ const Starfield: React.FC = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // רקע שחור
-      ctx.fillStyle = 'rgba(0,0,0,1)';
+      // רקע שקוף (לא שחור מלא) כדי לאפשר לשכבות אחרות להיראות
+      ctx.fillStyle = 'rgba(0,0,0,0.2)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // פרלקסה עם תמונות הרקע
@@ -158,7 +159,7 @@ const Starfield: React.FC = () => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        zIndex: -1,
+        zIndex: 0,
         pointerEvents: 'none',
       }}
     />

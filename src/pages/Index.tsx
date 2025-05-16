@@ -28,7 +28,8 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#0F2027] via-[#203A43] to-[#2C5364] text-white relative overflow-x-hidden">
+      {/* Starfield is placed here to be above the background gradient but below the content */}
       <Starfield />
       
       <main className="relative z-10">
