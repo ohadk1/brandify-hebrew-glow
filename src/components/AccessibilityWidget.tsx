@@ -11,7 +11,7 @@ import {
   ArrowDown, 
   Play,
   Pause, 
-  Reset,
+  RotateCcw,
   X
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/sheet";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { CheckedState } from "@radix-ui/react-checkbox";
 
 const AccessibilityWidget: React.FC = () => {
   // Accessibility settings
@@ -134,6 +135,15 @@ const AccessibilityWidget: React.FC = () => {
     }
   };
 
+  // Handle checkbox change with CheckedState type
+  const handleCheckboxChange = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
+    return (checked: CheckedState) => {
+      if (checked === true || checked === false) {
+        setter(checked);
+      }
+    };
+  };
+
   return (
     <div className="fixed bottom-4 right-4 z-50">
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -200,8 +210,8 @@ const AccessibilityWidget: React.FC = () => {
                   <Label htmlFor="high-contrast" className="text-right">ניגודיות גבוהה</Label>
                   <Checkbox 
                     id="high-contrast" 
-                    checked={highContrast} 
-                    onCheckedChange={setHighContrast}
+                    checked={highContrast}
+                    onCheckedChange={handleCheckboxChange(setHighContrast)}
                     aria-label="הפעל ניגודיות גבוהה"
                   />
                 </div>
@@ -210,8 +220,8 @@ const AccessibilityWidget: React.FC = () => {
                   <Label htmlFor="dark-mode" className="text-right">מצב כהה</Label>
                   <Checkbox 
                     id="dark-mode" 
-                    checked={darkMode} 
-                    onCheckedChange={setDarkMode}
+                    checked={darkMode}
+                    onCheckedChange={handleCheckboxChange(setDarkMode)}
                     aria-label="הפעל מצב כהה"
                   />
                 </div>
@@ -220,8 +230,8 @@ const AccessibilityWidget: React.FC = () => {
                   <Label htmlFor="underline-links" className="text-right">הדגש קישורים</Label>
                   <Checkbox 
                     id="underline-links" 
-                    checked={underlineLinks} 
-                    onCheckedChange={setUnderlineLinks}
+                    checked={underlineLinks}
+                    onCheckedChange={handleCheckboxChange(setUnderlineLinks)}
                     aria-label="הדגש קישורים עם קו תחתון"
                   />
                 </div>
@@ -236,8 +246,8 @@ const AccessibilityWidget: React.FC = () => {
                   <Label htmlFor="keyboard-navigation" className="text-right">ניווט מקלדת משופר</Label>
                   <Checkbox 
                     id="keyboard-navigation" 
-                    checked={keyboardNavigation} 
-                    onCheckedChange={setKeyboardNavigation}
+                    checked={keyboardNavigation}
+                    onCheckedChange={handleCheckboxChange(setKeyboardNavigation)}
                     aria-label="הפעל ניווט מקלדת משופר"
                   />
                 </div>
@@ -246,8 +256,8 @@ const AccessibilityWidget: React.FC = () => {
                   <Label htmlFor="pause-animations" className="text-right">השהה אנימציות</Label>
                   <Checkbox 
                     id="pause-animations" 
-                    checked={pauseAnimations} 
-                    onCheckedChange={setPauseAnimations}
+                    checked={pauseAnimations}
+                    onCheckedChange={handleCheckboxChange(setPauseAnimations)}
                     aria-label="השהה אנימציות"
                   />
                 </div>
@@ -261,7 +271,7 @@ const AccessibilityWidget: React.FC = () => {
               variant="destructive"
               aria-label="אפס הגדרות נגישות"
             >
-              <Reset className="h-4 w-4 ml-2" />
+              <RotateCcw className="h-4 w-4 ml-2" />
               <span>איפוס הגדרות</span>
             </Button>
           </div>
