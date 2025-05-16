@@ -9,6 +9,7 @@ import LogoGallery from '@/components/LogoGallery';
 import Testimonial from '@/components/Testimonial';
 import ContactForm from '@/components/ContactForm';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
+import Footer from '@/components/Footer';
 
 const Index: React.FC = () => {
   // Add a smooth scroll handler for navigation links
@@ -49,13 +50,7 @@ const Index: React.FC = () => {
         <ContactForm />
       </main>
       
-      <footer className="relative z-10 py-10 text-center text-gray-400 text-sm">
-        <div className="container mx-auto">
-          <div className="opacity-0 animate-[fadeIn_0.8s_ease-out_2s_forwards]">
-            © {new Date().getFullYear()} BRANDLIFY. כל הזכויות שמורות.
-          </div>
-        </div>
-      </footer>
+      <Footer />
       
       <FloatingWhatsAppButton />
     </div>
