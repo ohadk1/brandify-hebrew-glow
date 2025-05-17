@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const Hero: React.FC = () => {
   return (
-    <section className="min-h-[85vh] flex flex-col justify-center items-center relative px-4 py-20">
+    <section className="min-h-[85vh] flex flex-col justify-center items-center relative px-4 py-10">
       {/* Removed solid background overlay to allow starfield to be visible behind content */}
       
       <div className="max-w-4xl mx-auto text-center z-10 relative">
