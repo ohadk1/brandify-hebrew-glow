@@ -1,18 +1,12 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-
 const Hero: React.FC = () => {
-  return (
-    <section className="min-h-[85vh] flex flex-col justify-center items-center relative px-4 py-6">
+  return <section className="min-h-[85vh] flex flex-col justify-center items-center relative px-4 py-6">
       {/* Removed solid background overlay to allow starfield to be visible behind content */}
       
-      <div className="max-w-4xl mx-auto text-center z-10 relative">
+      <div className="max-w-4xl mx-auto text-center z-10 relative mt-32">
         <div className="inline-block relative mb-8 animate-float">
-          <img 
-            src="/lovable-uploads/545b2919-a502-4994-8e4b-f826a13be127.png" 
-            alt="Brandlify Logo" 
-            className="w-24 h-24 md:w-32 md:h-32 mx-auto object-contain animate-[fadeIn_2s_ease-in-out]"
-          />
+          <img src="/lovable-uploads/545b2919-a502-4994-8e4b-f826a13be127.png" alt="Brandlify Logo" className="w-24 h-24 md:w-32 md:h-32 mx-auto object-contain animate-[fadeIn_2s_ease-in-out]" />
           <div className="absolute -inset-4 bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red rounded-full opacity-30 blur-xl animate-pulse"></div>
         </div>
 
@@ -25,15 +19,12 @@ const Hero: React.FC = () => {
           עיצוב מותאם אישית במהירות, כולל חיבור למערכת לידים – כל מה שצריך כדי לצאת לדרך כבר בימים הקרובים.
         </p>
 
-        <Button 
-          className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards] font-bold"
-          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-        >
+        <Button className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards] font-bold" onClick={() => document.getElementById('contact')?.scrollIntoView({
+        behavior: 'smooth'
+      })}>
           <span>לקבלת הצעה משתלמת – לחץ כאן</span>
         </Button>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
