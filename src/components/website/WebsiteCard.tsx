@@ -39,7 +39,7 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
   }, [desktopImage, mobileImage]);
 
   return (
-    <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-hidden group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full">
+    <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-visible group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full">
       <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-30 blur moving-gradient"></div>
 
       <CardContent className="p-6 relative flex flex-col h-full z-10">
@@ -52,21 +52,22 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
             {/* Desktop Image */}
             <Dialog>
               <DialogTrigger asChild>
-                <div className="relative overflow-hidden rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-auto">
-                  <div className="w-full h-52 flex items-center justify-center">
+                <div className="relative overflow-visible rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-auto">
+                  <div className="w-full h-52 flex items-center justify-center bg-gray-900">
                     <img
                       src={desktopImage}
                       alt={`${title} - Desktop View`}
-                      className="w-full h-full object-cover rounded-md border border-gray-700"
-                      style={{ objectPosition: 'center', display: 'block', minHeight: '208px' }}
+                      className="w-full h-full object-cover rounded-md border border-gray-700 z-20 block"
+                      style={{ objectPosition: 'center', minHeight: '208px', visibility: 'visible', display: 'block' }}
                       onError={(e) => {
                         console.error("Image failed to load:", desktopImage);
                         e.currentTarget.src = "/placeholder.svg";
                       }}
                       loading="eager"
+                      fetchPriority="high"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none">
+                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none z-30">
                     <GalleryHorizontal className="w-8 h-8 text-white" />
                   </div>
                 </div>
@@ -87,21 +88,22 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
             {/* Mobile Image */}
             <Dialog>
               <DialogTrigger asChild>
-                <div className="relative overflow-hidden rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-24">
-                  <div className="w-full h-52 md:h-52 flex items-center justify-center">
+                <div className="relative overflow-visible rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-24">
+                  <div className="w-full h-52 md:h-52 flex items-center justify-center bg-gray-900">
                     <img
                       src={mobileImage}
                       alt={`${title} - Mobile View`}
-                      className="w-full h-full object-cover rounded-md border border-gray-700"
-                      style={{ objectPosition: 'center', display: 'block', minHeight: '208px' }}
+                      className="w-full h-full object-cover rounded-md border border-gray-700 z-20 block"
+                      style={{ objectPosition: 'center', minHeight: '208px', visibility: 'visible', display: 'block' }}
                       onError={(e) => {
                         console.error("Image failed to load:", mobileImage);
                         e.currentTarget.src = "/placeholder.svg";
                       }}
                       loading="eager"
+                      fetchPriority="high"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none">
+                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none z-30">
                     <GalleryHorizontal className="w-8 h-8 text-white" />
                   </div>
                 </div>

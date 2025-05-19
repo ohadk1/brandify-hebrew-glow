@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { 
   Carousel,
   CarouselContent,
@@ -15,26 +15,42 @@ interface WebsiteCarouselProps {
 
 const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
   console.log("WebsiteCarousel rendering websites:", websites.length);
-  console.log("WebsiteCarousel websites data:", JSON.stringify(websites));
+  
+  const carouselRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    // Force reflow after mounting
+    if (carouselRef.current) {
+      const forceReflow = carouselRef.current.offsetHeight;
+      console.log("Carousel reflow triggered:", forceReflow);
+    }
+  }, []);
   
   if (websites.length === 0) {
     return <div className="text-center text-white">No websites to display.</div>;
   }
   
   return (
-    <Carousel className="w-full">
-      <CarouselContent>
-        {websites.map((site, index) => (
-          <CarouselItem key={`mobile-${site.title}-${index}`} className="px-1 md:px-2">
-            <WebsiteCard {...site} />
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <div className="flex justify-center gap-2 mt-4">
-        <CarouselPrevious className="position-relative left-auto right-auto" />
-        <CarouselNext className="position-relative left-auto right-auto" />
-      </div>
-    </Carousel>
+    <div ref={carouselRef} className="min-h-[600px]">
+      <Carousel className="w-full">
+        <CarouselContent className="min-h-[550px]">
+          {websites.map((site, index) => (
+            <CarouselItem 
+              key={`mobile-${site.title}-${index}`} 
+              className="px-1 md:px-2 min-h-[500px]"
+            >
+              <div className="h-full">
+                <WebsiteCard {...site} />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <div className="flex justify-center gap-2 mt-4">
+          <CarouselPrevious className="position-relative left-auto right-auto" />
+          <CarouselNext className="position-relative left-auto right-auto" />
+        </div>
+      </Carousel>
+    </div>
   );
 };
 
