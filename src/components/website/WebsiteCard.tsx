@@ -44,8 +44,11 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
     };
     preloadMobileImg.src = mobileImage;
     
-    console.log('Preloading images:', { desktopImage, mobileImage });
-  }, [desktopImage, mobileImage]);
+    console.log('Preloading images for card:', title, { desktopImage, mobileImage });
+  }, [desktopImage, mobileImage, title]);
+
+  // Added logging for rendering events
+  console.log(`Rendering WebsiteCard: ${title}`);
 
   return (
     <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-visible group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full w-full">

@@ -28,8 +28,9 @@ const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
             <CarouselItem 
               key={`mobile-${site.title}-${index}`} 
               className="px-1 md:px-2 h-[600px] flex"
+              style={{ display: 'block', visibility: 'visible', opacity: 1 }}
             >
-              <div className="w-full h-full">
+              <div className="w-full h-full relative z-10">
                 <WebsiteCard {...site} />
               </div>
             </CarouselItem>

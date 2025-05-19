@@ -34,7 +34,10 @@ const Carousel = React.forwardRef<
     React.useEffect(() => {
       if (api) {
         console.log("Carousel API initialized, forcing reflow");
-        api.reInit();
+        // Added timeout to ensure complete initialization
+        setTimeout(() => {
+          api.reInit();
+        }, 100);
       }
     }, [api]);
 
@@ -84,6 +87,17 @@ const Carousel = React.forwardRef<
       onSelect(api)
       api.on("reInit", onSelect)
       api.on("select", onSelect)
+
+      // Add an additional listener for visibility handling
+      api.on("select", () => {
+        console.log("Carousel slide changed");
+        // Force reflow on slide change
+        setTimeout(() => {
+          if (api && api.reInit) {
+            api.reInit();
+          }
+        }, 50);
+      });
 
       return () => {
         api?.off("select", onSelect)
