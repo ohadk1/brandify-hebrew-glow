@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Starfield from '@/components/Starfield';
 import Hero from '@/components/Hero';
@@ -8,6 +7,7 @@ import WhyChooseUs from '@/components/WhyChooseUs';
 import LogoGallery from '@/components/LogoGallery';
 import Testimonial from '@/components/Testimonial';
 import ContactForm from '@/components/ContactForm';
+import WebsiteShowcase from '@/components/WebsiteShowcase';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
 import Footer from '@/components/Footer';
 
@@ -83,6 +83,7 @@ const Index: React.FC = () => {
         <AboutUs />
         <Services />
         <LogoGallery />
+        <WebsiteShowcase />
         <WhyChooseUs />
         <Testimonial />
         <ContactForm />
