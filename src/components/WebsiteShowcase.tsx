@@ -7,6 +7,8 @@ import WebsiteCallToAction from './website/WebsiteCallToAction';
 import { websiteData } from './website/WebsiteData';
 
 const WebsiteShowcase: React.FC = () => {
+  console.log("WebsiteShowcase rendering with data:", websiteData.length);
+  
   return (
     <section id="websites" className="py-20 px-4">
       <ScrollReveal>

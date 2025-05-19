@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ExternalLink, GalleryHorizontal } from "lucide-react";
 
 export interface WebsiteProps {
@@ -46,6 +46,7 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                 </div>
               </DialogTrigger>
               <DialogContent className="max-w-4xl bg-black border border-gray-700">
+                <DialogTitle className="sr-only">{title} - Desktop View</DialogTitle>
                 <img
                   src={desktopImage || "/placeholder.svg"}
                   alt={`${title} - Desktop View`}
@@ -68,6 +69,7 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                 </div>
               </DialogTrigger>
               <DialogContent className="max-w-sm bg-black border border-gray-700">
+                <DialogTitle className="sr-only">{title} - Mobile View</DialogTitle>
                 <img
                   src={mobileImage || "/placeholder.svg"}
                   alt={`${title} - Mobile View`}

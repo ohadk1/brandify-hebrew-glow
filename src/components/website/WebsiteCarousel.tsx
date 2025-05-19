@@ -14,11 +14,13 @@ interface WebsiteCarouselProps {
 }
 
 const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
+  console.log("WebsiteCarousel rendering websites:", websites.length);
+  
   return (
     <Carousel className="w-full">
       <CarouselContent>
         {websites.map((site, index) => (
-          <CarouselItem key={`mobile-${site.title}-${index}`} className="px-1">
+          <CarouselItem key={`mobile-${site.title}-${index}`} className="px-1 md:px-2">
             <WebsiteCard {...site} />
           </CarouselItem>
         ))}
