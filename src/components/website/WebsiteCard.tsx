@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -23,23 +23,32 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
   mobileImage,
   buttonText,
 }) => {
+  const [desktopImgLoaded, setDesktopImgLoaded] = useState(false);
+  const [mobileImgLoaded, setMobileImgLoaded] = useState(false);
+  
   // Force image preloading
-  React.useEffect(() => {
-    const preloadImages = () => {
-      const desktopImg = new Image();
-      desktopImg.src = desktopImage;
-      
-      const mobileImg = new Image();
-      mobileImg.src = mobileImage;
-      
-      console.log('Preloading images:', { desktopImage, mobileImage });
+  useEffect(() => {
+    const preloadDesktopImg = new Image();
+    preloadDesktopImg.onload = () => setDesktopImgLoaded(true);
+    preloadDesktopImg.onerror = (e) => {
+      console.error("Desktop image failed to load:", desktopImage, e);
+      setDesktopImgLoaded(true); // Still mark as loaded to show fallback
     };
+    preloadDesktopImg.src = desktopImage;
     
-    preloadImages();
+    const preloadMobileImg = new Image();
+    preloadMobileImg.onload = () => setMobileImgLoaded(true);
+    preloadMobileImg.onerror = (e) => {
+      console.error("Mobile image failed to load:", mobileImage, e);
+      setMobileImgLoaded(true); // Still mark as loaded to show fallback
+    };
+    preloadMobileImg.src = mobileImage;
+    
+    console.log('Preloading images:', { desktopImage, mobileImage });
   }, [desktopImage, mobileImage]);
 
   return (
-    <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-visible group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full">
+    <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-visible group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full w-full">
       <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-30 blur moving-gradient"></div>
 
       <CardContent className="p-6 relative flex flex-col h-full z-10">
@@ -52,13 +61,19 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
             {/* Desktop Image */}
             <Dialog>
               <DialogTrigger asChild>
-                <div className="relative overflow-visible rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-auto">
+                <div className="relative rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-auto">
                   <div className="w-full h-52 flex items-center justify-center bg-gray-900">
                     <img
                       src={desktopImage}
                       alt={`${title} - Desktop View`}
                       className="w-full h-full object-cover rounded-md border border-gray-700 z-20 block"
-                      style={{ objectPosition: 'center', minHeight: '208px', visibility: 'visible', display: 'block' }}
+                      style={{
+                        objectPosition: 'center',
+                        minHeight: '208px',
+                        visibility: 'visible',
+                        display: 'block',
+                        opacity: 1
+                      }}
                       onError={(e) => {
                         console.error("Image failed to load:", desktopImage);
                         e.currentTarget.src = "/placeholder.svg";
@@ -88,13 +103,19 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
             {/* Mobile Image */}
             <Dialog>
               <DialogTrigger asChild>
-                <div className="relative overflow-visible rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-24">
+                <div className="relative rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-24">
                   <div className="w-full h-52 md:h-52 flex items-center justify-center bg-gray-900">
                     <img
                       src={mobileImage}
                       alt={`${title} - Mobile View`}
                       className="w-full h-full object-cover rounded-md border border-gray-700 z-20 block"
-                      style={{ objectPosition: 'center', minHeight: '208px', visibility: 'visible', display: 'block' }}
+                      style={{
+                        objectPosition: 'center',
+                        minHeight: '208px',
+                        visibility: 'visible',
+                        display: 'block',
+                        opacity: 1
+                      }}
                       onError={(e) => {
                         console.error("Image failed to load:", mobileImage);
                         e.currentTarget.src = "/placeholder.svg";

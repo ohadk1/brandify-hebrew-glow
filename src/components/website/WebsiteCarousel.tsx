@@ -31,23 +31,23 @@ const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
   }
   
   return (
-    <div ref={carouselRef} className="min-h-[600px]">
+    <div ref={carouselRef} className="w-full">
       <Carousel className="w-full">
-        <CarouselContent className="min-h-[550px]">
+        <CarouselContent className="min-h-[600px]">
           {websites.map((site, index) => (
             <CarouselItem 
               key={`mobile-${site.title}-${index}`} 
-              className="px-1 md:px-2 min-h-[500px]"
+              className="px-1 md:px-2 h-[600px] flex items-stretch"
             >
-              <div className="h-full">
+              <div className="w-full h-full flex">
                 <WebsiteCard {...site} />
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
         <div className="flex justify-center gap-2 mt-4">
-          <CarouselPrevious className="position-relative left-auto right-auto" />
-          <CarouselNext className="position-relative left-auto right-auto" />
+          <CarouselPrevious className="static relative-position-override left-auto right-auto" />
+          <CarouselNext className="static relative-position-override left-auto right-auto" />
         </div>
       </Carousel>
     </div>

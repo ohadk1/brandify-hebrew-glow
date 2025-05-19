@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import ScrollReveal from '@/components/ScrollReveal';
 import WebsiteCarousel from './website/WebsiteCarousel';
 import WebsiteGrid from './website/WebsiteGrid';
 import WebsiteCallToAction from './website/WebsiteCallToAction';
@@ -46,7 +45,7 @@ const WebsiteShowcase: React.FC = () => {
         </h2>
 
         {/* Display based on screen size */}
-        <div className="opacity-100 transform-none">
+        <div className="opacity-100 transform-none w-full">
           {isMobile ? (
             <WebsiteCarousel websites={websiteData} />
           ) : (
