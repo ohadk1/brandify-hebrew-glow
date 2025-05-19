@@ -15,6 +15,11 @@ interface WebsiteCarouselProps {
 
 const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
   console.log("WebsiteCarousel rendering websites:", websites.length);
+  console.log("WebsiteCarousel websites data:", JSON.stringify(websites));
+  
+  if (websites.length === 0) {
+    return <div className="text-center text-white">No websites to display.</div>;
+  }
   
   return (
     <Carousel className="w-full">
