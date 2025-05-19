@@ -26,7 +26,7 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
     <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-hidden group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full">
       <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-30 blur moving-gradient"></div>
 
-      <CardContent className="p-6 relative flex flex-col h-full">
+      <CardContent className="p-6 relative flex flex-col h-full z-10">
         <h3 className="text-xl md:text-2xl font-bold mb-3 text-white">{title}</h3>
         <p className="text-gray-300 mb-4">{descriptionHe}</p>
 
@@ -40,13 +40,13 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                   <img
                     src={desktopImage}
                     alt={`${title} - Desktop View`}
-                    className="w-full max-h-60 object-cover rounded-md border border-gray-700 transition-transform hover:scale-[1.02]"
+                    className="w-full h-52 object-cover rounded-md border border-gray-700 z-10"
                     onError={(e) => {
                       console.error("Image failed to load:", desktopImage);
                       e.currentTarget.src = "/placeholder.svg";
                     }}
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity">
+                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none z-20">
                     <GalleryHorizontal className="w-8 h-8 text-white" />
                   </div>
                 </div>
@@ -71,13 +71,13 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                   <img
                     src={mobileImage}
                     alt={`${title} - Mobile View`}
-                    className="w-full md:w-24 max-h-60 object-cover rounded-md border border-gray-700 transition-transform hover:scale-[1.02]"
+                    className="w-full md:w-24 h-52 object-cover rounded-md border border-gray-700 z-10"
                     onError={(e) => {
                       console.error("Image failed to load:", mobileImage);
                       e.currentTarget.src = "/placeholder.svg";
                     }}
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity">
+                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none z-20">
                     <GalleryHorizontal className="w-8 h-8 text-white" />
                   </div>
                 </div>
