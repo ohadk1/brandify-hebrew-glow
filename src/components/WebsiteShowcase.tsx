@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import WebsiteCarousel from './website/WebsiteCarousel';
 import WebsiteGrid from './website/WebsiteGrid';
@@ -9,7 +9,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 
 const WebsiteShowcase: React.FC = () => {
   console.log("WebsiteShowcase rendering with data:", websiteData.length);
-  console.log("WebsiteShowcase data content:", JSON.stringify(websiteData));
   
   const isMobile = useIsMobile();
   
@@ -35,13 +34,12 @@ const WebsiteShowcase: React.FC = () => {
             <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-brandlify-cyan to-brandlify-purple transform animate-[expandWidth_0.6s_ease_0.3s_forwards]"></div>
           </h2>
 
-          {/* Force specific display based on screen size for better control */}
-          <div className="block md:hidden">
+          {/* Display based on screen size */}
+          {isMobile ? (
             <WebsiteCarousel websites={websiteData} />
-          </div>
-          <div className="hidden md:block">
+          ) : (
             <WebsiteGrid websites={websiteData} />
-          </div>
+          )}
 
           <WebsiteCallToAction />
         </div>
