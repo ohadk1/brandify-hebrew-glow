@@ -38,7 +38,7 @@ const Carousel = React.forwardRef<
       }
     }, [api]);
 
-    const onSelect = React.useCallback((emblaApi: typeof useEmblaCarousel[1]) => {
+    const onSelect = React.useCallback((emblaApi: NonNullable<ReturnType<typeof useEmblaCarousel>[1]>) => {
       if (!emblaApi) {
         return
       }
