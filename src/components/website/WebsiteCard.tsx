@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,24 +22,25 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
   mobileImage,
   buttonText,
 }) => {
-  console.log("WebsiteCard rendering with images:", { desktopImage, mobileImage });
-  
   return (
     <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-hidden group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full">
       <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-30 blur moving-gradient"></div>
+
       <CardContent className="p-6 relative flex flex-col h-full">
         <h3 className="text-xl md:text-2xl font-bold mb-3 text-white">{title}</h3>
         <p className="text-gray-300 mb-4">{descriptionHe}</p>
-        
+
         <div className="mt-auto">
           <div className="flex flex-col md:flex-row gap-4 mb-4 mt-3">
+
+            {/* Desktop Image */}
             <Dialog>
               <DialogTrigger asChild>
-                <div className="relative overflow-hidden rounded-md cursor-pointer transform transition-transform hover:scale-[1.02] group/img">
-                  <img 
-                    src={desktopImage} 
+                <div className="relative overflow-hidden rounded-md bg-gray-900 cursor-pointer group/img">
+                  <img
+                    src={desktopImage}
                     alt={`${title} - Desktop View`}
-                    className="w-full h-40 object-cover rounded-md border border-gray-700"
+                    className="w-full max-h-60 object-cover rounded-md border border-gray-700 transition-transform hover:scale-[1.02]"
                     onError={(e) => {
                       console.error("Image failed to load:", desktopImage);
                       e.currentTarget.src = "/placeholder.svg";
@@ -63,14 +63,15 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                 />
               </DialogContent>
             </Dialog>
-            
+
+            {/* Mobile Image */}
             <Dialog>
               <DialogTrigger asChild>
-                <div className="relative overflow-hidden rounded-md cursor-pointer transform transition-transform hover:scale-[1.02] group/img">
-                  <img 
-                    src={mobileImage} 
+                <div className="relative overflow-hidden rounded-md bg-gray-900 cursor-pointer group/img">
+                  <img
+                    src={mobileImage}
                     alt={`${title} - Mobile View`}
-                    className="w-full md:w-24 md:h-40 object-cover rounded-md border border-gray-700"
+                    className="w-full md:w-24 max-h-60 object-cover rounded-md border border-gray-700 transition-transform hover:scale-[1.02]"
                     onError={(e) => {
                       console.error("Image failed to load:", mobileImage);
                       e.currentTarget.src = "/placeholder.svg";
@@ -94,15 +95,16 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
               </DialogContent>
             </Dialog>
           </div>
-          
-          <a 
-            href={url} 
-            target="_blank" 
+
+          {/* Visit Button */}
+          <a
+            href={url}
+            target="_blank"
             rel="noreferrer"
             className="inline-flex"
           >
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="group/btn border-brandlify-cyan hover:border-brandlify-purple transition-colors duration-300"
             >
               <span>{buttonText}</span>
