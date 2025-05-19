@@ -18,7 +18,7 @@ const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
     <Carousel className="w-full">
       <CarouselContent>
         {websites.map((site, index) => (
-          <CarouselItem key={`mobile-${site.title}-${index}`}>
+          <CarouselItem key={`mobile-${site.title}-${index}`} className="px-1">
             <WebsiteCard {...site} />
           </CarouselItem>
         ))}
