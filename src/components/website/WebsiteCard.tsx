@@ -23,6 +23,8 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
   mobileImage,
   buttonText,
 }) => {
+  console.log("WebsiteCard rendering with images:", { desktopImage, mobileImage });
+  
   return (
     <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-hidden group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full">
       <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-30 blur moving-gradient"></div>
@@ -36,9 +38,13 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
               <DialogTrigger asChild>
                 <div className="relative overflow-hidden rounded-md cursor-pointer transform transition-transform hover:scale-[1.02] group/img">
                   <img 
-                    src={desktopImage || "/placeholder.svg"} 
+                    src={desktopImage} 
                     alt={`${title} - Desktop View`}
-                    className="w-full rounded-md border border-gray-700"
+                    className="w-full h-40 object-cover rounded-md border border-gray-700"
+                    onError={(e) => {
+                      console.error("Image failed to load:", desktopImage);
+                      e.currentTarget.src = "/placeholder.svg";
+                    }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity">
                     <GalleryHorizontal className="w-8 h-8 text-white" />
@@ -46,11 +52,14 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                 </div>
               </DialogTrigger>
               <DialogContent className="max-w-4xl bg-black border border-gray-700">
-                <DialogTitle className="sr-only">{title} - Desktop View</DialogTitle>
+                <DialogTitle>{title} - Desktop View</DialogTitle>
                 <img
-                  src={desktopImage || "/placeholder.svg"}
+                  src={desktopImage}
                   alt={`${title} - Desktop View`}
                   className="w-full rounded-md"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                 />
               </DialogContent>
             </Dialog>
@@ -59,9 +68,13 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
               <DialogTrigger asChild>
                 <div className="relative overflow-hidden rounded-md cursor-pointer transform transition-transform hover:scale-[1.02] group/img">
                   <img 
-                    src={mobileImage || "/placeholder.svg"} 
+                    src={mobileImage} 
                     alt={`${title} - Mobile View`}
-                    className="w-full md:w-24 md:h-auto rounded-md border border-gray-700"
+                    className="w-full md:w-24 md:h-40 object-cover rounded-md border border-gray-700"
+                    onError={(e) => {
+                      console.error("Image failed to load:", mobileImage);
+                      e.currentTarget.src = "/placeholder.svg";
+                    }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity">
                     <GalleryHorizontal className="w-8 h-8 text-white" />
@@ -69,11 +82,14 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                 </div>
               </DialogTrigger>
               <DialogContent className="max-w-sm bg-black border border-gray-700">
-                <DialogTitle className="sr-only">{title} - Mobile View</DialogTitle>
+                <DialogTitle>{title} - Mobile View</DialogTitle>
                 <img
-                  src={mobileImage || "/placeholder.svg"}
+                  src={mobileImage}
                   alt={`${title} - Mobile View`}
                   className="w-full rounded-md"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                 />
               </DialogContent>
             </Dialog>
