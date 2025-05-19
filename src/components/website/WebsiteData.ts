@@ -25,7 +25,7 @@ export const websiteData: WebsiteProps[] = [
     url: "https://landing-page-itum26.lovable.app",
     descriptionEn: "Landing page designed for a waterproofing and sealing company. Optimized for high conversion with lead form integration, bold typography, and strong call-to-action.",
     descriptionHe: "דף נחיתה תכליתי עם מיקוד בקריאה לפעולה, חיבור למערכת לידים ונראות מקצועית לעסק בתחום הבנייה והאיטום.",
-    desktopImage: "/lovable-uploads/08481515-e7dd-457a-aae0-498cd46eeb8b.png",
+    desktopImage: "/itum26desktop.png",
     mobileImage: "/placeholder.svg",
     buttonText: "בקרו באתר",
   }
