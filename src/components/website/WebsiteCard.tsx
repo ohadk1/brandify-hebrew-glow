@@ -70,9 +70,9 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                       style={{
                         objectPosition: 'center',
                         minHeight: '208px',
-                        visibility: 'visible',
                         display: 'block',
-                        opacity: 1
+                        opacity: 1,
+                        visibility: 'visible'
                       }}
                       onError={(e) => {
                         console.error("Image failed to load:", desktopImage);
@@ -112,9 +112,9 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                       style={{
                         objectPosition: 'center',
                         minHeight: '208px',
-                        visibility: 'visible',
                         display: 'block',
-                        opacity: 1
+                        opacity: 1,
+                        visibility: 'visible'
                       }}
                       onError={(e) => {
                         console.error("Image failed to load:", mobileImage);

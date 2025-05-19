@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { 
   Carousel,
   CarouselContent,
@@ -16,38 +16,28 @@ interface WebsiteCarouselProps {
 const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
   console.log("WebsiteCarousel rendering websites:", websites.length);
   
-  const carouselRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    // Force reflow after mounting
-    if (carouselRef.current) {
-      const forceReflow = carouselRef.current.offsetHeight;
-      console.log("Carousel reflow triggered:", forceReflow);
-    }
-  }, []);
-  
   if (websites.length === 0) {
     return <div className="text-center text-white">No websites to display.</div>;
   }
   
   return (
-    <div ref={carouselRef} className="w-full">
+    <div className="w-full">
       <Carousel className="w-full">
         <CarouselContent className="min-h-[600px]">
           {websites.map((site, index) => (
             <CarouselItem 
               key={`mobile-${site.title}-${index}`} 
-              className="px-1 md:px-2 h-[600px] flex items-stretch"
+              className="px-1 md:px-2 h-[600px] flex"
             >
-              <div className="w-full h-full flex">
+              <div className="w-full h-full">
                 <WebsiteCard {...site} />
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
         <div className="flex justify-center gap-2 mt-4">
-          <CarouselPrevious className="static relative-position-override left-auto right-auto" />
-          <CarouselNext className="static relative-position-override left-auto right-auto" />
+          <CarouselPrevious className="static relative-position-override left-auto right-auto transform-none" />
+          <CarouselNext className="static relative-position-override left-auto right-auto transform-none" />
         </div>
       </Carousel>
     </div>

@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -47,7 +48,7 @@ const Carousel = React.forwardRef<
   (
     {
       orientation = "horizontal",
-      opts,
+      opts = { loop: true },
       setApi,
       plugins,
       className,
@@ -65,6 +66,14 @@ const Carousel = React.forwardRef<
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
+
+    // Force reflow after component mounts to ensure proper initial rendering
+    React.useEffect(() => {
+      if (api) {
+        console.log("Carousel API initialized, forcing reflow");
+        api.reInit();
+      }
+    }, [api]);
 
     const onSelect = React.useCallback((api: CarouselApi) => {
       if (!api) {
@@ -155,11 +164,11 @@ const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    <div ref={carouselRef} className="overflow-hidden w-full">
       <div
         ref={ref}
         className={cn(
-          "flex",
+          "flex w-full",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
           className
         )}
