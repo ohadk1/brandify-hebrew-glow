@@ -1,17 +1,15 @@
 
 import * as React from "react";
-import useEmblaCarousel from "embla-carousel-react";
+import useEmblaCarousel, { EmblaOptionsType } from "embla-carousel-react";
 import { enhanceSlideVisibility } from "@/lib/carousel-utils";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-type EmblaCarouselType = ReturnType<typeof useEmblaCarousel>;
 
 /**
  * Custom hook to manage carousel responsiveness and visibility
  * 
  * @returns The embla carousel ref and API, along with additional status flags
  */
-export function useResponsiveCarousel(options = { loop: true }) {
+export function useResponsiveCarousel(options: EmblaOptionsType = { loop: true }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     ...options,
     axis: "x",
@@ -27,7 +25,7 @@ export function useResponsiveCarousel(options = { loop: true }) {
   
   // Function to properly style slides for visibility
   const forceSlideVisibility = React.useCallback(() => {
-    if (!emblaRef || !emblaRef.current) return;
+    if (!emblaRef || !emblaApi) return;
     
     const slides = document.querySelectorAll('[aria-roledescription="slide"]');
     if (!slides || slides.length === 0) return;
@@ -36,11 +34,11 @@ export function useResponsiveCarousel(options = { loop: true }) {
     const currentIdx = emblaApi ? emblaApi.selectedScrollSnap() : activeIndex;
     enhanceSlideVisibility(slides, currentIdx);
     
-    // Also ensure the container has proper sizing
-    if (emblaRef.current) {
+    // Safely access the viewport element
+    if (emblaRef) {
       try {
-        const viewportElement = emblaRef.current as unknown as HTMLElement;
-        if (viewportElement) {
+        const viewportElement = emblaRef.current;
+        if (viewportElement instanceof HTMLElement) {
           viewportElement.style.minHeight = '700px';
           viewportElement.style.overflow = 'visible';
         }

@@ -1,6 +1,6 @@
 
 import * as React from "react";
-import useEmblaCarousel from "embla-carousel-react";
+import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
 import { enhanceSlideVisibility } from "@/lib/carousel-utils";
 
 /**
@@ -69,13 +69,15 @@ export function useCarouselVisibility(
     // Use the extracted utility function
     enhanceSlideVisibility(slides, currentSlideIndex);
     
-    // Force carousel container to maintain height ONLY if carouselRef exists and is valid
+    // Force carousel container to maintain height only if carouselRef exists and is valid
     if (carouselRef) {
-      // Get the actual DOM element - only if it exists
-      const container = carouselRef.current;
+      // Safely access the DOM element
+      const container = carouselRef.current instanceof HTMLElement 
+        ? carouselRef.current
+        : null;
       
-      // Only set styles if the container exists
-      if (container instanceof HTMLElement) {
+      // Only set styles if the container exists and is an HTMLElement
+      if (container) {
         container.style.minHeight = '700px';
         container.style.overflow = 'visible';
       }

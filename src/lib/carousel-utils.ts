@@ -56,7 +56,12 @@ export function getCarouselViewport(ref: any): HTMLElement | null {
     if (ref.current && ref.current instanceof HTMLElement) return ref.current;
     
     // For Embla ref objects, safely cast
-    return ref.current as unknown as HTMLElement;
+    const element = ref.current;
+    if (element instanceof HTMLElement) {
+      return element;
+    }
+    
+    return null;
   } catch (e) {
     console.error("Failed to access carousel viewport:", e);
     return null;
