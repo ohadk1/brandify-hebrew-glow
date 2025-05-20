@@ -1,7 +1,7 @@
 
 import * as React from "react";
-import useEmblaCarousel, { EmblaOptionsType } from "embla-carousel-react";
-import { enhanceSlideVisibility } from "@/lib/carousel-utils";
+import useEmblaCarousel, { UseEmblaCarouselType } from "embla-carousel-react";
+import { enhanceSlideVisibility, getCarouselViewport } from "@/lib/carousel-utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 /**
@@ -9,7 +9,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
  * 
  * @returns The embla carousel ref and API, along with additional status flags
  */
-export function useResponsiveCarousel(options: EmblaOptionsType = { loop: true }) {
+export function useResponsiveCarousel(options: Parameters<typeof useEmblaCarousel>[0] = { loop: true }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     ...options,
     axis: "x",
@@ -35,16 +35,10 @@ export function useResponsiveCarousel(options: EmblaOptionsType = { loop: true }
     enhanceSlideVisibility(slides, currentIdx);
     
     // Safely access the viewport element
-    if (emblaRef) {
-      try {
-        const viewportElement = emblaRef.current;
-        if (viewportElement instanceof HTMLElement) {
-          viewportElement.style.minHeight = '700px';
-          viewportElement.style.overflow = 'visible';
-        }
-      } catch (e) {
-        console.error("Failed to set carousel container styles:", e);
-      }
+    const viewportElement = getCarouselViewport(emblaRef);
+    if (viewportElement) {
+      viewportElement.style.minHeight = '700px';
+      viewportElement.style.overflow = 'visible';
     }
   }, [emblaRef, emblaApi, activeIndex]);
   
