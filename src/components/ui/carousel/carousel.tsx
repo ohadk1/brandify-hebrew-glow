@@ -53,8 +53,9 @@ const Carousel = React.forwardRef<
           });
           
           // Force carousel container to maintain height
-          const container = carouselRef.current;
-          if (container instanceof HTMLElement) {
+          if (carouselRef) {
+            // EmblaViewportRefType doesn't have current property directly
+            const container = carouselRef as HTMLElement;
             container.style.minHeight = '700px';
             container.style.overflow = 'visible';
           }
