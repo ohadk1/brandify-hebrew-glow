@@ -51,28 +51,27 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
   console.log(`Rendering WebsiteCard: ${title}`);
 
   return (
-    <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-visible group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full w-full">
+    <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-visible group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full w-full flex flex-col">
       <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-30 blur moving-gradient"></div>
 
       <CardContent className="p-6 relative flex flex-col h-full z-10">
         <h3 className="text-xl md:text-2xl font-bold mb-3 text-white">{title}</h3>
         <p className="text-gray-300 mb-4">{descriptionHe}</p>
 
-        <div className="mt-auto">
-          <div className="flex flex-col md:flex-row gap-4 mb-4 mt-3">
-
+        <div className="flex-grow mt-2 mb-4">
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
             {/* Desktop Image */}
             <Dialog>
               <DialogTrigger asChild>
                 <div className="relative rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-auto">
-                  <div className="w-full h-52 flex items-center justify-center bg-gray-900">
+                  <div className="w-full h-48 flex items-center justify-center bg-gray-900">
                     <img
                       src={desktopImage}
                       alt={`${title} - Desktop View`}
                       className="w-full h-full object-cover rounded-md border border-gray-700 z-20 block"
                       style={{
                         objectPosition: 'center',
-                        minHeight: '208px',
+                        minHeight: '192px',
                         display: 'block',
                         opacity: 1,
                         visibility: 'visible'
@@ -107,14 +106,14 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
             <Dialog>
               <DialogTrigger asChild>
                 <div className="relative rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-24">
-                  <div className="w-full h-52 md:h-52 flex items-center justify-center bg-gray-900">
+                  <div className="w-full h-48 md:h-48 flex items-center justify-center bg-gray-900">
                     <img
                       src={mobileImage}
                       alt={`${title} - Mobile View`}
                       className="w-full h-full object-cover rounded-md border border-gray-700 z-20 block"
                       style={{
                         objectPosition: 'center',
-                        minHeight: '208px',
+                        minHeight: '192px',
                         display: 'block',
                         opacity: 1,
                         visibility: 'visible'
@@ -146,21 +145,23 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
             </Dialog>
           </div>
 
-          {/* Visit Button */}
-          <a
-            href={url}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex"
-          >
-            <Button
-              variant="outline"
-              className="group/btn border-brandlify-cyan hover:border-brandlify-purple transition-colors duration-300"
+          {/* Visit Button - Now positioned at the bottom with mt-auto */}
+          <div className="mt-4">
+            <a
+              href={url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex"
             >
-              <span>{buttonText}</span>
-              <ExternalLink className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-            </Button>
-          </a>
+              <Button
+                variant="outline"
+                className="group/btn border-brandlify-cyan hover:border-brandlify-purple transition-colors duration-300"
+              >
+                <span>{buttonText}</span>
+                <ExternalLink className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+              </Button>
+            </a>
+          </div>
         </div>
       </CardContent>
     </Card>

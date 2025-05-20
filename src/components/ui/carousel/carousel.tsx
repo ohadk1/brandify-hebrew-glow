@@ -37,6 +37,10 @@ const Carousel = React.forwardRef<
         // Added timeout to ensure complete initialization
         setTimeout(() => {
           api.reInit();
+          // Add a second reInit after a delay to ensure everything is properly sized
+          setTimeout(() => {
+            api.reInit();
+          }, 300);
         }, 100);
       }
     }, [api]);
@@ -91,10 +95,24 @@ const Carousel = React.forwardRef<
       // Add an additional listener for visibility handling
       api.on("select", () => {
         console.log("Carousel slide changed");
-        // Force reflow on slide change
+        // Force reflow on slide change with multiple attempts
         setTimeout(() => {
           if (api && api.reInit) {
             api.reInit();
+            
+            // Add a second reInit after a short delay to ensure proper rendering
+            setTimeout(() => {
+              if (api && api.reInit) {
+                api.reInit();
+                
+                // Final check after DOM has fully updated
+                setTimeout(() => {
+                  if (api && api.reInit) {
+                    api.reInit();
+                  }
+                }, 150);
+              }
+            }, 100);
           }
         }, 50);
       });

@@ -23,12 +23,17 @@ const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
   return (
     <div className="w-full">
       <Carousel className="w-full">
-        <CarouselContent className="min-h-[600px]">
+        <CarouselContent className="min-h-[700px]">
           {websites.map((site, index) => (
             <CarouselItem 
               key={`mobile-${site.title}-${index}`} 
-              className="px-1 md:px-2 h-[600px] flex"
-              style={{ display: 'block', visibility: 'visible', opacity: 1 }}
+              className="px-1 md:px-2 lg:h-[600px] h-auto"
+              style={{ 
+                display: 'block', 
+                visibility: 'visible', 
+                opacity: 1,
+                minHeight: '650px'
+              }}
             >
               <div className="w-full h-full relative z-10">
                 <WebsiteCard {...site} />
