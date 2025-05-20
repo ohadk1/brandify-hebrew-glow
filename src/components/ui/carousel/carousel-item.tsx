@@ -10,11 +10,12 @@ const CarouselItem = React.forwardRef<
   const { orientation } = useCarousel()
   
   // Create a combined style with the important visibility properties
-  const combinedStyle = {
+  // Fixing the type issue by using proper CSSProperties types
+  const combinedStyle: React.CSSProperties = {
     visibility: 'visible',
     opacity: 1,
     display: 'block',
-    position: 'relative',
+    position: 'relative' as const, // Using 'as const' to specify the literal type
     minHeight: '700px',
     height: 'auto',
     overflow: 'visible',
