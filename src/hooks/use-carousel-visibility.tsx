@@ -1,6 +1,7 @@
 
 import * as React from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { enhanceSlideVisibility } from "@/lib/carousel-utils";
 
 /**
  * Custom hook to enforce visibility of carousel slides
@@ -58,34 +59,26 @@ export function useCarouselVisibility(
   
   // Core function to ensure slide visibility
   const ensureAllSlidesVisible = () => {
+    // Exit early if API is not available
+    if (!api) return;
+    
     // Force all slides to be visible with explicit styling
     const slides = document.querySelectorAll('[aria-roledescription="slide"]');
-    const currentSlideIndex = api?.selectedScrollSnap() || 0;
+    const currentSlideIndex = api.selectedScrollSnap() || 0;
     
-    slides.forEach((slide, idx) => {
-      if (slide instanceof HTMLElement) {
-        // Extra emphasis on current slide
-        const zIndex = idx === currentSlideIndex ? 20 : 10;
-        
-        slide.style.visibility = 'visible';
-        slide.style.display = 'block';
-        slide.style.opacity = '1';
-        slide.style.height = 'auto';
-        slide.style.minHeight = '700px';
-        slide.style.overflow = 'visible';
-        slide.style.position = 'relative';
-        slide.style.zIndex = String(zIndex);
-        
-        console.log(`Applied visibility styles to slide ${idx}`);
-      }
-    });
+    // Use the extracted utility function
+    enhanceSlideVisibility(slides, currentSlideIndex);
     
-    // Force carousel container to maintain height
+    // Force carousel container to maintain height ONLY if carouselRef exists and is valid
     if (carouselRef) {
-      // Properly cast the EmblaViewportRefType to HTMLElement
-      const container = carouselRef as unknown as HTMLElement;
-      container.style.minHeight = '700px';
-      container.style.overflow = 'visible';
+      // Get the actual DOM element - only if it exists
+      const container = carouselRef.current;
+      
+      // Only set styles if the container exists
+      if (container instanceof HTMLElement) {
+        container.style.minHeight = '700px';
+        container.style.overflow = 'visible';
+      }
     }
     
     // Re-initialize the carousel if possible

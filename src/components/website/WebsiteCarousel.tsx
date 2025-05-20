@@ -8,6 +8,7 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 import WebsiteCard, { WebsiteProps } from './WebsiteCard';
+import { enhanceSlideVisibility } from '@/lib/carousel-utils';
 
 interface WebsiteCarouselProps {
   websites: WebsiteProps[];
@@ -24,18 +25,9 @@ const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
         
         // Force reflow of carousel items
         const items = carouselRef.current.querySelectorAll('[aria-roledescription="slide"]');
-        items.forEach((item, index) => {
-          if (item instanceof HTMLElement) {
-            item.style.visibility = 'visible';
-            item.style.display = 'block';
-            item.style.opacity = '1';
-            item.style.position = 'relative';
-            item.style.minHeight = '700px';
-            item.style.height = 'auto';
-            item.style.overflow = 'visible';
-            console.log(`Enforced visibility on slide ${index}`);
-          }
-        });
+        if (items && items.length > 0) {
+          enhanceSlideVisibility(items, 0);
+        }
       }
     };
 

@@ -9,6 +9,11 @@ export function enhanceSlideVisibility(
   slides: NodeListOf<Element>,
   currentIndex: number
 ) {
+  if (!slides || slides.length === 0) {
+    console.log('No slides found to enhance');
+    return;
+  }
+  
   slides.forEach((slide, idx) => {
     if (slide instanceof HTMLElement) {
       // Extra emphasis on current slide
