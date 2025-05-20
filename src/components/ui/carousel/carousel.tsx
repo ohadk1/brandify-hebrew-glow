@@ -30,23 +30,36 @@ const Carousel = React.forwardRef<
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
 
-    // Force reflow after component mounts to ensure proper initial rendering
+    // Multiple reflow attempts with increasing delays for thorough rendering
     React.useEffect(() => {
       if (api) {
         console.log("Carousel API initialized, forcing reflow");
-        // Added timeout to ensure complete initialization
-        setTimeout(() => {
-          api.reInit();
-          // Add a second reInit after a delay to ensure everything is properly sized
-          setTimeout(() => {
+        
+        const ensureVisibility = () => {
+          // Force all slides to be visible
+          const slides = document.querySelectorAll('[aria-roledescription="slide"]');
+          slides.forEach((slide) => {
+            if (slide instanceof HTMLElement) {
+              slide.style.visibility = 'visible';
+              slide.style.display = 'block';
+              slide.style.opacity = '1';
+              slide.style.height = 'auto';
+              slide.style.minHeight = '700px';
+              slide.style.overflow = 'visible';
+              slide.style.position = 'relative';
+            }
+          });
+          
+          if (api && api.reInit) {
             api.reInit();
-            
-            // Final reInit to make sure all slides are properly sized and visible
-            setTimeout(() => {
-              api.reInit();
-            }, 500);
-          }, 300);
-        }, 100);
+          }
+        };
+        
+        // Series of reflows with increasing delays
+        setTimeout(ensureVisibility, 100);
+        setTimeout(ensureVisibility, 300);
+        setTimeout(ensureVisibility, 600);
+        setTimeout(ensureVisibility, 1000);
       }
     }, [api]);
 
@@ -101,46 +114,32 @@ const Carousel = React.forwardRef<
       api.on("select", () => {
         console.log("Carousel slide changed");
         
-        // Force all items to be visible immediately
-        const slides = document.querySelectorAll('[aria-roledescription="slide"]');
-        slides.forEach((slide) => {
-          if (slide instanceof HTMLElement) {
-            slide.style.visibility = 'visible';
-            slide.style.display = 'block';
-            slide.style.opacity = '1';
-            slide.style.height = 'auto';
-            slide.style.minHeight = '700px';
-            slide.style.overflow = 'visible';
-          }
-        });
-        
-        // Multiple reInit attempts with increasing delays for thorough rendering
-        setTimeout(() => {
+        // Multiple attempts to ensure visibility with increasing delays
+        const makeVisible = () => {
+          // Force all items to be visible immediately
+          const slides = document.querySelectorAll('[aria-roledescription="slide"]');
+          slides.forEach((slide) => {
+            if (slide instanceof HTMLElement) {
+              slide.style.visibility = 'visible';
+              slide.style.display = 'block';
+              slide.style.opacity = '1';
+              slide.style.height = 'auto';
+              slide.style.minHeight = '700px';
+              slide.style.overflow = 'visible';
+              slide.style.position = 'relative';
+            }
+          });
+          
           if (api && api.reInit) {
             api.reInit();
-            
-            setTimeout(() => {
-              if (api && api.reInit) {
-                api.reInit();
-                
-                // Final check with longer delay
-                setTimeout(() => {
-                  if (api && api.reInit) {
-                    api.reInit();
-                    
-                    // Force slides to remain visible
-                    slides.forEach((slide) => {
-                      if (slide instanceof HTMLElement) {
-                        slide.style.visibility = 'visible';
-                        slide.style.display = 'block';
-                      }
-                    });
-                  }
-                }, 500);
-              }
-            }, 300);
           }
-        }, 100);
+        };
+        
+        // Multiple visibility enforcement with increasing delays
+        setTimeout(makeVisible, 50);
+        setTimeout(makeVisible, 150);
+        setTimeout(makeVisible, 300);
+        setTimeout(makeVisible, 500);
       });
 
       return () => {
@@ -165,10 +164,10 @@ const Carousel = React.forwardRef<
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative", className)}
+          className={cn("relative min-h-[700px]", className)}
           role="region"
           aria-roledescription="carousel"
-          style={{ minHeight: '700px' }}
+          style={{ minHeight: '700px', overflow: 'visible' }}
           {...props}
         >
           {children}

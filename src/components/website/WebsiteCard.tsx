@@ -51,20 +51,20 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
   console.log(`Rendering WebsiteCard: ${title}`);
 
   return (
-    <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-visible group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full w-full flex flex-col">
+    <Card className="bg-black bg-opacity-80 border border-gray-700 overflow-visible group transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-2xl relative h-full w-full flex flex-col min-h-[650px]">
       <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] opacity-30 blur moving-gradient"></div>
 
-      <CardContent className="p-6 relative flex flex-col h-full z-10">
+      <CardContent className="p-6 relative flex flex-col h-full z-10 overflow-visible">
         <h3 className="text-xl md:text-2xl font-bold mb-3 text-white">{title}</h3>
         <p className="text-gray-300 mb-4">{descriptionHe}</p>
 
-        <div className="flex-grow mt-2 mb-4">
-          <div className="flex flex-col md:flex-row gap-4 mb-4">
+        <div className="flex-grow mt-2 mb-8 overflow-visible">
+          <div className="flex flex-col md:flex-row gap-4 mb-6 overflow-visible">
             {/* Desktop Image */}
             <Dialog>
               <DialogTrigger asChild>
-                <div className="relative rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-auto">
-                  <div className="w-full h-48 flex items-center justify-center bg-gray-900">
+                <div className="relative rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-auto overflow-visible">
+                  <div className="w-full h-48 flex items-center justify-center bg-gray-900 overflow-visible">
                     <img
                       src={desktopImage}
                       alt={`${title} - Desktop View`}
@@ -81,7 +81,6 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                         e.currentTarget.src = "/placeholder.svg";
                       }}
                       loading="eager"
-                      fetchPriority="high"
                     />
                   </div>
                   <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none z-30">
@@ -105,8 +104,8 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
             {/* Mobile Image */}
             <Dialog>
               <DialogTrigger asChild>
-                <div className="relative rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-24">
-                  <div className="w-full h-48 md:h-48 flex items-center justify-center bg-gray-900">
+                <div className="relative rounded-md bg-gray-900 cursor-pointer group/img w-full md:w-24 overflow-visible">
+                  <div className="w-full h-48 md:h-48 flex items-center justify-center bg-gray-900 overflow-visible">
                     <img
                       src={mobileImage}
                       alt={`${title} - Mobile View`}
@@ -123,7 +122,6 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
                         e.currentTarget.src = "/placeholder.svg";
                       }}
                       loading="eager"
-                      fetchPriority="high"
                     />
                   </div>
                   <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity pointer-events-none z-30">
@@ -145,8 +143,8 @@ const WebsiteCard: React.FC<WebsiteProps> = ({
             </Dialog>
           </div>
 
-          {/* Visit Button - Now positioned at the bottom with mt-auto */}
-          <div className="mt-4">
+          {/* Visit Button - Positioned with absolute positioning to ensure visibility */}
+          <div className="mt-4 pb-4 relative z-20 overflow-visible">
             <a
               href={url}
               target="_blank"

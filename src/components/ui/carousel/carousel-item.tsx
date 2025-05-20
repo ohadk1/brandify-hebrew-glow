@@ -6,8 +6,20 @@ import { useCarousel } from "./carousel-context"
 const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
+>(({ className, style, ...props }, ref) => {
   const { orientation } = useCarousel()
+  
+  // Create a combined style with the important visibility properties
+  const combinedStyle = {
+    visibility: 'visible',
+    opacity: 1,
+    display: 'block',
+    position: 'relative',
+    minHeight: '700px',
+    height: 'auto',
+    overflow: 'visible',
+    ...style
+  };
 
   return (
     <div
@@ -17,17 +29,10 @@ const CarouselItem = React.forwardRef<
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
+        "visible opacity-100 block min-h-[700px] h-auto overflow-visible relative",
         className
       )}
-      style={{
-        visibility: 'visible',
-        opacity: 1,
-        display: 'block',
-        position: 'relative',
-        minHeight: '700px', // Ensure consistent minimum height
-        height: 'auto',     // Allow natural height based on content
-        overflow: 'visible' // Ensure content isn't cut off
-      }}
+      style={combinedStyle}
       {...props}
     />
   )
