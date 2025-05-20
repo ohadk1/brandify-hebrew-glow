@@ -15,15 +15,18 @@ const CarouselItem = React.forwardRef<
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full min-h-[300px]",
+        "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
       style={{
-        visibility: 'visible', // Ensure items are always visible
+        visibility: 'visible',
         opacity: 1,
         display: 'block',
-        position: 'relative'
+        position: 'relative',
+        minHeight: '700px', // Ensure consistent minimum height
+        height: 'auto',     // Allow natural height based on content
+        overflow: 'visible' // Ensure content isn't cut off
       }}
       {...props}
     />

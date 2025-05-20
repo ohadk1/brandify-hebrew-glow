@@ -40,6 +40,11 @@ const Carousel = React.forwardRef<
           // Add a second reInit after a delay to ensure everything is properly sized
           setTimeout(() => {
             api.reInit();
+            
+            // Final reInit to make sure all slides are properly sized and visible
+            setTimeout(() => {
+              api.reInit();
+            }, 500);
           }, 300);
         }, 100);
       }
@@ -92,29 +97,50 @@ const Carousel = React.forwardRef<
       api.on("reInit", onSelect)
       api.on("select", onSelect)
 
-      // Add an additional listener for visibility handling
+      // Enhanced slide change handler for better visibility
       api.on("select", () => {
         console.log("Carousel slide changed");
-        // Force reflow on slide change with multiple attempts
+        
+        // Force all items to be visible immediately
+        const slides = document.querySelectorAll('[aria-roledescription="slide"]');
+        slides.forEach((slide) => {
+          if (slide instanceof HTMLElement) {
+            slide.style.visibility = 'visible';
+            slide.style.display = 'block';
+            slide.style.opacity = '1';
+            slide.style.height = 'auto';
+            slide.style.minHeight = '700px';
+            slide.style.overflow = 'visible';
+          }
+        });
+        
+        // Multiple reInit attempts with increasing delays for thorough rendering
         setTimeout(() => {
           if (api && api.reInit) {
             api.reInit();
             
-            // Add a second reInit after a short delay to ensure proper rendering
             setTimeout(() => {
               if (api && api.reInit) {
                 api.reInit();
                 
-                // Final check after DOM has fully updated
+                // Final check with longer delay
                 setTimeout(() => {
                   if (api && api.reInit) {
                     api.reInit();
+                    
+                    // Force slides to remain visible
+                    slides.forEach((slide) => {
+                      if (slide instanceof HTMLElement) {
+                        slide.style.visibility = 'visible';
+                        slide.style.display = 'block';
+                      }
+                    });
                   }
-                }, 150);
+                }, 500);
               }
-            }, 100);
+            }, 300);
           }
-        }, 50);
+        }, 100);
       });
 
       return () => {
@@ -142,6 +168,7 @@ const Carousel = React.forwardRef<
           className={cn("relative", className)}
           role="region"
           aria-roledescription="carousel"
+          style={{ minHeight: '700px' }}
           {...props}
         >
           {children}

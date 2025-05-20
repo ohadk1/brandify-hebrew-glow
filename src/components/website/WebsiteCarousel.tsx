@@ -21,18 +21,20 @@ const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
   }
   
   return (
-    <div className="w-full">
+    <div className="w-full" style={{ minHeight: '700px' }}>
       <Carousel className="w-full">
         <CarouselContent className="min-h-[700px]">
           {websites.map((site, index) => (
             <CarouselItem 
               key={`mobile-${site.title}-${index}`} 
-              className="px-1 md:px-2 lg:h-[600px] h-auto"
+              className="px-1 md:px-2"
               style={{ 
                 display: 'block', 
                 visibility: 'visible', 
                 opacity: 1,
-                minHeight: '650px'
+                minHeight: '700px',
+                height: 'auto',
+                overflow: 'visible'
               }}
             >
               <div className="w-full h-full relative z-10">
