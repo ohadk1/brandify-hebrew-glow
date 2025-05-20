@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { 
+import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -14,38 +13,27 @@ interface WebsiteCarouselProps {
 }
 
 const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
-  console.log("WebsiteCarousel rendering websites:", websites.length);
-  
   if (websites.length === 0) {
     return <div className="text-center text-white">No websites to display.</div>;
   }
-  
+
   return (
-    <div className="w-full" style={{ minHeight: '700px' }}>
+    <div className="w-full">
       <Carousel className="w-full">
-        <CarouselContent className="min-h-[700px]">
+        <CarouselContent className="flex flex-nowrap">
           {websites.map((site, index) => (
-            <CarouselItem 
-              key={`mobile-${site.title}-${index}`} 
-              className="px-1 md:px-2"
-              style={{ 
-                display: 'block', 
-                visibility: 'visible', 
-                opacity: 1,
-                minHeight: '700px',
-                height: 'auto',
-                overflow: 'visible'
-              }}
+            <CarouselItem
+              key={`mobile-${site.title}-${index}`}
+              className="w-full flex-shrink-0 px-2"
             >
-              <div className="w-full h-full relative z-10">
-                <WebsiteCard {...site} />
-              </div>
+              <WebsiteCard {...site} />
             </CarouselItem>
           ))}
         </CarouselContent>
+
         <div className="flex justify-center gap-2 mt-4">
-          <CarouselPrevious className="static relative-position-override left-auto right-auto transform-none" />
-          <CarouselNext className="static relative-position-override left-auto right-auto transform-none" />
+          <CarouselPrevious className="relative left-auto right-auto transform-none" />
+          <CarouselNext className="relative left-auto right-auto transform-none" />
         </div>
       </Carousel>
     </div>
