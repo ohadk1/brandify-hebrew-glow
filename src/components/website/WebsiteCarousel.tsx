@@ -4,7 +4,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselPrevious,
-  CarouselNext
+  CarouselNext,
 } from "@/components/ui/carousel";
 import WebsiteCard, { WebsiteProps } from './WebsiteCard';
 
@@ -14,7 +14,7 @@ interface WebsiteCarouselProps {
 
 const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
   if (websites.length === 0) {
-    return <div className="text-center text-white">No websites to display.</div>;
+    return <div className="text-center text-white">אין אתרים להציג.</div>;
   }
 
   return (
@@ -23,17 +23,23 @@ const WebsiteCarousel: React.FC<WebsiteCarouselProps> = ({ websites }) => {
         <CarouselContent className="flex flex-nowrap">
           {websites.map((site, index) => (
             <CarouselItem
-              key={`mobile-${site.title}-${index}`}
-              className="w-full flex-shrink-0 px-2"
+              key={`site-${index}`}
+              className="w-full px-1"
+              style={{
+                flex: '0 0 100%',
+                minHeight: '680px',
+              }}
             >
-              <WebsiteCard {...site} />
+              <div className="h-full">
+                <WebsiteCard {...site} />
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>
 
         <div className="flex justify-center gap-2 mt-4">
-          <CarouselPrevious className="relative left-auto right-auto transform-none" />
-          <CarouselNext className="relative left-auto right-auto transform-none" />
+          <CarouselPrevious className="left-auto right-auto" />
+          <CarouselNext className="left-auto right-auto" />
         </div>
       </Carousel>
     </div>
