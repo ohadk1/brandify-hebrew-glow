@@ -4,31 +4,31 @@ import { Clock, Shield, Zap, Mouse } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const whyChooseItems = [
-  {
-    icon: <Clock size={20} className="text-brandlify-cyan" />,
-    title: "שירות מהיר (תוך 3 ימי עבודה)",
-    content: "אנחנו מספקים שירות זריז ואיכותי, עם תוצרים מוכנים תוך 3 ימי עבודה בלבד."
-  },
-  {
-    icon: <Shield size={20} className="text-brandlify-cyan" />,
-    title: "מחירים נוחים במיוחד לעסקים קטנים",
-    content: "חבילות מיתוג הוגנות ומשתלמות במיוחד לעסקים קטנים ויזמים בתחילת דרכם."
-  },
-  {
-    icon: <Zap size={20} className="text-brandlify-cyan" />,
-    title: "מיתוג מקצועי שממיר ללידים",
-    content: "עיצוב שלא רק נראה טוב, אלא גם עובד - ומביא תוצאות עסקיות אמיתיות."
-  },
-  {
-    icon: <Mouse size={20} className="text-brandlify-cyan" />,
-    title: "כולל חיבור אוטומטי לוואטסאפ",
-    content: "כל הלידים מגיעים ישירות לוואטסאפ שלך באופן אוטומטי, בלי לפספס אף לקוח."
-  }
-];
-
 const WhyChooseUs: React.FC = () => {
   const { t } = useLanguage();
+
+  const whyChooseItems = [
+    {
+      icon: <Clock size={20} className="text-brandlify-cyan" />,
+      titleKey: "whyChoose1Title",
+      contentKey: "whyChoose1Content"
+    },
+    {
+      icon: <Shield size={20} className="text-brandlify-cyan" />,
+      titleKey: "whyChoose2Title",
+      contentKey: "whyChoose2Content"
+    },
+    {
+      icon: <Zap size={20} className="text-brandlify-cyan" />,
+      titleKey: "whyChoose3Title",
+      contentKey: "whyChoose3Content"
+    },
+    {
+      icon: <Mouse size={20} className="text-brandlify-cyan" />,
+      titleKey: "whyChoose4Title",
+      contentKey: "whyChoose4Content"
+    }
+  ];
 
   return (
     <section id="why-choose-us" className="py-20 px-4">
@@ -57,8 +57,8 @@ const WhyChooseUs: React.FC = () => {
                       {item.icon}
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                      <p className="text-gray-200">{item.content}</p>
+                      <h3 className="font-bold text-lg mb-2">{t(item.titleKey)}</h3>
+                      <p className="text-gray-200">{t(item.contentKey)}</p>
                     </div>
                   </div>
                 </div>

@@ -10,39 +10,6 @@ import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const serviceItems = [
-  {
-    number: 1,
-    title: "עיצוב לוגו 2D / 3D מותאם אישית",
-    description: "לוגו שנבנה כדי לשרת מטרה, לא רק להיראות טוב.\nמותאם לעסק לפי התחום, קהל היעד והחזון.\nכולל אפשרות לאנימציה ועיבוד תלת־ממדי איכותי שמשדר מקצועיות."
-  },
-  {
-    number: 2,
-    title: "בניית שפה גרפית מלאה למותג",
-    description: "שפה ויזואלית עקבית שגורמת ללקוחות לזהות אותך תוך שנייה.\nצבעים, טיפוגרפיה, אייקונים, סגנון תמונות – הכל קוהרנטי וממותג.\nנבנית סביב הערכים שלך ומגובה בחשיבה אסטרטגית."
-  },
-  {
-    number: 3,
-    title: "עיצוב דפי נחיתה ואתרי תדמית",
-    description: "אתרים שמניעים לפעולה, לא רק \"יפים\".\nמבנה ברור, קריאה לפעולה חדה ונראות שמקרינה ביטחון.\nמותאם לכל מסך ומכוון להמיר מבקר ללקוח."
-  },
-  {
-    number: 4,
-    title: "חיבורים לאוטומציות ו־CRM",
-    description: "מהרגע שלקוח משאיר פרטים – הכל עובד לבד.\nהמידע עובר ל־Google Sheets, וואטסאפ, CRM או Zapier.\nחיסכון בזמן, אפס פספוסים, שליטה מלאה בתהליך המכירה."
-  },
-  {
-    number: 5,
-    title: "תכנון ויזואלי שיווקי ממוקד קהל",
-    description: "אנחנו לא רק מעצבים – אנחנו חושבים כמו הקהל שלך.\nמה הוא רואה? מה מניע אותו ללחוץ?\nהעיצוב מספר סיפור שמוביל להחלטה."
-  },
-  {
-    number: 6,
-    title: "שירות אישי וליווי צמוד",
-    description: "כל פרויקט מלווה בליווי צמוד, מענה מהיר וזמינות גבוהה.\nלא נשארים לבד. אנחנו שם מהרגע הראשון ועד שהמותג שלך חי ובועט אונליין."
-  }
-];
-
 const Services: React.FC = () => {
   const { t } = useLanguage();
   const [openItems, setOpenItems] = React.useState<Record<number, boolean>>({});
@@ -53,6 +20,39 @@ const Services: React.FC = () => {
       [index]: !prev[index]
     }));
   };
+
+  const serviceItems = [
+    {
+      number: 1,
+      titleKey: 'service1Title',
+      descriptionKey: 'service1Description'
+    },
+    {
+      number: 2,
+      titleKey: 'service2Title',
+      descriptionKey: 'service2Description'
+    },
+    {
+      number: 3,
+      titleKey: 'service3Title',
+      descriptionKey: 'service3Description'
+    },
+    {
+      number: 4,
+      titleKey: 'service4Title',
+      descriptionKey: 'service4Description'
+    },
+    {
+      number: 5,
+      titleKey: 'service5Title',
+      descriptionKey: 'service5Description'
+    },
+    {
+      number: 6,
+      titleKey: 'service6Title',
+      descriptionKey: 'service6Description'
+    }
+  ];
 
   return (
     <section id="services" className="py-20 px-4 bg-black bg-opacity-70">
@@ -83,7 +83,7 @@ const Services: React.FC = () => {
                   <CollapsibleTrigger className="w-full text-right px-6 py-5 flex items-center justify-between focus:outline-none">
                     <div className="flex items-start">
                       <div className="text-3xl ml-5 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C] bg-clip-text text-transparent font-bold self-start">{service.number}</div>
-                      <h3 className="text-xl md:text-2xl font-bold text-white">{service.title}</h3>
+                      <h3 className="text-xl md:text-2xl font-bold text-white">{t(service.titleKey)}</h3>
                     </div>
                     <ChevronDown className={cn(
                       "h-5 w-5 transition-transform duration-400 ease-in-out",
@@ -92,7 +92,7 @@ const Services: React.FC = () => {
                   </CollapsibleTrigger>
                   <CollapsibleContent className="accordion-content">
                     <div className="px-6 pb-5 pt-1 text-[#D0D0D0] whitespace-pre-line">
-                      {service.description}
+                      {t(service.descriptionKey)}
                     </div>
                   </CollapsibleContent>
                 </div>
