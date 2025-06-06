@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Starfield from '@/components/Starfield';
 import Hero from '@/components/Hero';
@@ -9,7 +10,6 @@ import Testimonial from '@/components/Testimonial';
 import ContactForm from '@/components/ContactForm';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
 import Footer from '@/components/Footer';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index: React.FC = () => {
@@ -66,9 +66,6 @@ const Index: React.FC = () => {
       >
         {t('skipToContent')}
       </a>
-
-      {/* Language Switcher */}
-      <LanguageSwitcher />
 
       {/* Darker gradient background underneath everything */}
       <div 

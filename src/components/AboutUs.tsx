@@ -1,14 +1,17 @@
 
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const AboutUs: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="py-20 px-4">
       <ScrollReveal>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-12 inline-block relative">
-            מי אנחנו?
+            {t('aboutTitle')}
             <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-cyan-400 to-pink-500 transform animate-[expandWidth_0.6s_ease_0.3s_forwards]"></div>
           </h2>
           

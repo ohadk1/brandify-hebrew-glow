@@ -1,7 +1,13 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
+
 const Hero: React.FC = () => {
-  return <section className="min-h-[85vh] flex flex-col justify-center items-center relative px-4 py-6">
+  const { t, language } = useLanguage();
+
+  return (
+    <section className="min-h-[85vh] flex flex-col justify-center items-center relative px-4 py-6">
       {/* Removed solid background overlay to allow starfield to be visible behind content */}
       
       <div className="max-w-4xl mx-auto text-center z-10 relative mt-32">
@@ -10,21 +16,23 @@ const Hero: React.FC = () => {
           <div className="absolute -inset-4 bg-gradient-to-r from-brandlify-cyan via-brandlify-purple to-brandlify-red rounded-full opacity-30 blur-xl animate-pulse"></div>
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-bold mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
-          <span className="text-gradient">מיתוג מקצועי במחיר נגיש לעסקים קטנים</span>
-          <span className="block mt-2">לוגו, אתר ודף נחיתה במקום אחד</span>
+        <h1 className={`text-3xl md:text-5xl font-bold mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards] ${language === 'en' ? 'text-left' : ''}`}>
+          <span className="text-gradient">{t('heroTitle')}</span>
+          <span className="block mt-2">{t('heroSubtitle')}</span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.7s_forwards]">
-          עיצוב מותאם אישית במהירות, כולל חיבור למערכת לידים – כל מה שצריך כדי לצאת לדרך כבר בימים הקרובים.
+        <p className={`text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.7s_forwards] ${language === 'en' ? 'text-left' : ''}`}>
+          {t('heroDescription')}
         </p>
 
         <Button className="gradient-btn text-xl px-8 py-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards] font-bold" onClick={() => document.getElementById('contact')?.scrollIntoView({
         behavior: 'smooth'
       })}>
-          <span>לקבלת הצעה משתלמת – לחץ כאן</span>
+          <span>{t('heroButton')}</span>
         </Button>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;

@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { Check, Clock, Shield, Mouse, Rocket, Zap } from 'lucide-react';
+import { Clock, Shield, Zap, Mouse } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const whyChooseItems = [
   {
@@ -27,13 +28,15 @@ const whyChooseItems = [
 ];
 
 const WhyChooseUs: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="why-choose-us" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">
             <span className="relative inline-block">
-              למה לבחור בנו?
+              {t('whyChooseTitle')}
               <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-[#00E5FF] via-[#8F00FF] to-[#FF3C3C] transform animate-[expandWidth_0.6s_ease_forwards]"></div>
             </span>
           </h2>

@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const serviceItems = [
   {
@@ -43,6 +44,7 @@ const serviceItems = [
 ];
 
 const Services: React.FC = () => {
+  const { t } = useLanguage();
   const [openItems, setOpenItems] = React.useState<Record<number, boolean>>({});
 
   const toggleItem = (index: number) => {
@@ -58,7 +60,7 @@ const Services: React.FC = () => {
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">
             <span className="relative inline-block">
-              השירותים שלנו
+              {t('servicesTitle')}
               <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C] transform animate-[expandWidth_0.6s_ease_forwards]"></div>
             </span>
           </h2>

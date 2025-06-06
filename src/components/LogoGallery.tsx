@@ -3,8 +3,11 @@ import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const LogoGallery: React.FC = () => {
+  const { t } = useLanguage();
+  
   const logos = [
     {
       id: 1,
@@ -44,7 +47,7 @@ const LogoGallery: React.FC = () => {
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">
             <span className="relative inline-block">
-              הלוגואים שלנו
+              {t('portfolioTitle')}
               <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C] transform animate-[expandWidth_0.6s_ease_forwards]"></div>
             </span>
           </h2>
