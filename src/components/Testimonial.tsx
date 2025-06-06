@@ -2,8 +2,11 @@
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { Quote } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Testimonial: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-14 px-4">
       <div className="max-w-4xl mx-auto">
@@ -14,7 +17,7 @@ const Testimonial: React.FC = () => {
               <div className="flex flex-col items-center text-center">
                 <Quote size={28} className="text-brandlify-cyan mb-5 opacity-60" />
                 <p className="text-xl md:text-2xl lg:text-3xl font-light text-white leading-relaxed mb-6 font-['Assistant','Heebo',sans-serif] px-2 md:px-6">
-                  "האתר החדש ש-<span className="font-normal text-brandlify-cyan">brandlify</span> בנו לי העלה את כמות הלקוחות שלי – פי 3 יותר תוך שבוע 🙌"
+                  {t('testimonial')}
                 </p>
                 <div className="w-24 h-1 bg-gradient-to-r from-[#00E5FF] to-[#FF3C3C]"></div>
               </div>

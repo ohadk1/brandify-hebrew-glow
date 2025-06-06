@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Starfield from '@/components/Starfield';
 import Hero from '@/components/Hero';
@@ -11,8 +10,11 @@ import ContactForm from '@/components/ContactForm';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
 import Footer from '@/components/Footer';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index: React.FC = () => {
+  const { t } = useLanguage();
+
   // Add a smooth scroll handler for navigation links
   useEffect(() => {
     const handleScrollToAnchor = (e: MouseEvent) => {
@@ -62,7 +64,7 @@ const Index: React.FC = () => {
         href="#main-content" 
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:right-4 focus:z-50 focus:p-4 focus:bg-black focus:text-white focus:ring-2 focus:ring-white"
       >
-        דלג לתוכן העיקרי
+        {t('skipToContent')}
       </a>
 
       {/* Language Switcher */}
@@ -81,7 +83,7 @@ const Index: React.FC = () => {
         id="main-content" 
         className="relative z-10" 
         role="main" 
-        aria-label="תוכן עיקרי"
+        aria-label={t('mainContent')}
       >
         <Hero />
         <AboutUs />
