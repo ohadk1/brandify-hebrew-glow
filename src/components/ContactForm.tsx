@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 import FormHeader from './contact/FormHeader';
 import FormContainer from './contact/FormContainer';
@@ -15,6 +16,7 @@ import TrustStatement from './contact/TrustStatement';
 const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -39,8 +41,8 @@ const ContactForm: React.FC = () => {
       }
 
       toast({
-        title: "הטופס נשלח בהצלחה!",
-        description: "ניצור איתך קשר בהקדם",
+        title: t('toastSuccessTitle'),
+        description: t('toastSuccessDescription'),
       });
       
       // Reset form
@@ -49,8 +51,8 @@ const ContactForm: React.FC = () => {
     } catch (error) {
       console.error('Form submission error:', error);
       toast({
-        title: "שגיאה בשליחת הטופס",
-        description: "אנא נסה שוב מאוחר יותר",
+        title: t('toastErrorTitle'),
+        description: t('toastErrorDescription'),
         variant: "destructive",
       });
     } finally {

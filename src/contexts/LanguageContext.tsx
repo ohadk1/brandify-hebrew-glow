@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'he' | 'en';
@@ -55,7 +54,35 @@ const translations = {
     footerTermsOfUse: 'תנאי שימוש',
     footerCookiePolicy: 'מדיניות עוגיות',
     footerDisclaimer: 'כתב ויתור',
-    footerAccessibility: 'הצהרת נגישות'
+    footerAccessibility: 'הצהרת נגישות',
+    // Contact form translations
+    formHeaderTitle: 'רוצה להתחיל לבנות מותג?',
+    formHeaderSubtitle: '⚡ מספר המקומות השבוע מוגבל – שלחו פרטים ונחזור אליכם בהקדם',
+    formHeaderButton: 'לקבלת הצעה משתלמת – לחץ כאן',
+    urgencyStripText: '🕓 רק 5 מקומות בחודש במחיר המוזל – השאר פרטים עכשיו!',
+    trustStatement1: '🔒 הפרטים שלך נשמרים באופן מאובטח.',
+    trustStatement2: '💼 מיתוג אמין ומוכח לעסקים קטנים.',
+    formFieldName: 'שם מלא',
+    formFieldBusinessName: 'שם העסק',
+    formFieldPhone: 'טלפון',
+    formFieldEmail: 'אימייל',
+    formFieldService: 'איזה שירות מעניין אותך?',
+    formFieldServicePlaceholder: 'בחר שירות',
+    formFieldMessage: 'במה נוכל לעזור לך?',
+    formSubmitButton: 'לקבלת הצעה משתלמת – לחץ כאן',
+    formSubmitButtonLoading: 'שולח...',
+    serviceOptionLogo: 'לוגו בלבד',
+    serviceOptionDigitalCard: 'כרטיס ביקור דיגיטלי',
+    serviceOptionPhysicalCard: 'כרטיס ביקור פיזי',
+    serviceOptionMediaPost: 'פוסט פרסום מדיה',
+    serviceOptionLanding: 'דף נחיתה',
+    serviceOptionBrandingSite: 'אתר תדמית',
+    serviceOptionEcommerceSite: 'אתר חנות',
+    serviceOptionOther: 'אחר',
+    toastSuccessTitle: 'הטופס נשלח בהצלחה!',
+    toastSuccessDescription: 'ניצור איתך קשר בהקדם',
+    toastErrorTitle: 'שגיאה בשליחת הטופס',
+    toastErrorDescription: 'אנא נסה שוב מאוחר יותר'
   },
   en: {
     testimonial: '"The new website that brandlify built for me increased my client base by 3 times more within a week 🙌"',
@@ -98,7 +125,35 @@ const translations = {
     footerTermsOfUse: 'Terms of Use',
     footerCookiePolicy: 'Cookie Policy',
     footerDisclaimer: 'Disclaimer',
-    footerAccessibility: 'Accessibility Statement'
+    footerAccessibility: 'Accessibility Statement',
+    // Contact form translations
+    formHeaderTitle: 'Want to Start Building a Brand?',
+    formHeaderSubtitle: '⚡ Limited spots this week – send details and we\'ll get back to you soon',
+    formHeaderButton: 'Click Here for an Affordable Quote',
+    urgencyStripText: '🕓 Only 5 spots this month at the reduced price – leave details now!',
+    trustStatement1: '🔒 Your details are stored securely.',
+    trustStatement2: '💼 Reliable and proven branding for small businesses.',
+    formFieldName: 'Full Name',
+    formFieldBusinessName: 'Business Name',
+    formFieldPhone: 'Phone',
+    formFieldEmail: 'Email',
+    formFieldService: 'Which service interests you?',
+    formFieldServicePlaceholder: 'Select service',
+    formFieldMessage: 'How can we help you?',
+    formSubmitButton: 'Click Here for an Affordable Quote',
+    formSubmitButtonLoading: 'Sending...',
+    serviceOptionLogo: 'Logo Only',
+    serviceOptionDigitalCard: 'Digital Business Card',
+    serviceOptionPhysicalCard: 'Physical Business Card',
+    serviceOptionMediaPost: 'Media Post Advertisement',
+    serviceOptionLanding: 'Landing Page',
+    serviceOptionBrandingSite: 'Corporate Website',
+    serviceOptionEcommerceSite: 'E-commerce Website',
+    serviceOptionOther: 'Other',
+    toastSuccessTitle: 'Form submitted successfully!',
+    toastSuccessDescription: 'We will contact you soon',
+    toastErrorTitle: 'Error submitting form',
+    toastErrorDescription: 'Please try again later'
   }
 };
 

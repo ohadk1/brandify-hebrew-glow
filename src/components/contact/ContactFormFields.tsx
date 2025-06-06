@@ -2,6 +2,7 @@
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { ContactFormValues } from '@/lib/schemas/contactFormSchema';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -32,6 +33,8 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
   isSubmitting, 
   onSubmit 
 }) => {
+  const { t } = useLanguage();
+
   return (
     <Form {...form}>
       <form id="contact-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -40,7 +43,7 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
           name="name"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>שם מלא</FormLabel>
+              <FormLabel>{t('formFieldName')}</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -57,7 +60,7 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
           name="businessName"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>שם העסק</FormLabel>
+              <FormLabel>{t('formFieldBusinessName')}</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -74,7 +77,7 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
           name="phone"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>טלפון</FormLabel>
+              <FormLabel>{t('formFieldPhone')}</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -92,7 +95,7 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
           name="email"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>אימייל</FormLabel>
+              <FormLabel>{t('formFieldEmail')}</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -110,24 +113,24 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
           name="service"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>איזה שירות מעניין אותך?</FormLabel>
+              <FormLabel>{t('formFieldService')}</FormLabel>
               <FormControl>
                 <Select 
                   onValueChange={field.onChange} 
                   value={field.value}
                 >
                   <SelectTrigger className="w-full border-gray-700 bg-gray-900 text-white transition-all duration-300 focus:border-brandlify-cyan focus:ring-brandlify-cyan">
-                    <SelectValue placeholder="בחר שירות" />
+                    <SelectValue placeholder={t('formFieldServicePlaceholder')} />
                   </SelectTrigger>
                   <SelectContent className="bg-gray-900 border-gray-700 text-white">
-                    <SelectItem value="logo">לוגו בלבד</SelectItem>
-                    <SelectItem value="digital-card">כרטיס ביקור דיגיטלי</SelectItem>
-                    <SelectItem value="physical-card">כרטיס ביקור פיזי</SelectItem>
-                    <SelectItem value="media-post">פוסט פרסום מדיה</SelectItem>
-                    <SelectItem value="landing">דף נחיתה</SelectItem>
-                    <SelectItem value="branding-site">אתר תדמית</SelectItem>
-                    <SelectItem value="ecommerce-site">אתר חנות</SelectItem>
-                    <SelectItem value="other">אחר</SelectItem>
+                    <SelectItem value="logo">{t('serviceOptionLogo')}</SelectItem>
+                    <SelectItem value="digital-card">{t('serviceOptionDigitalCard')}</SelectItem>
+                    <SelectItem value="physical-card">{t('serviceOptionPhysicalCard')}</SelectItem>
+                    <SelectItem value="media-post">{t('serviceOptionMediaPost')}</SelectItem>
+                    <SelectItem value="landing">{t('serviceOptionLanding')}</SelectItem>
+                    <SelectItem value="branding-site">{t('serviceOptionBrandingSite')}</SelectItem>
+                    <SelectItem value="ecommerce-site">{t('serviceOptionEcommerceSite')}</SelectItem>
+                    <SelectItem value="other">{t('serviceOptionOther')}</SelectItem>
                   </SelectContent>
                 </Select>
               </FormControl>
@@ -141,7 +144,7 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
           name="message"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>במה נוכל לעזור לך?</FormLabel>
+              <FormLabel>{t('formFieldMessage')}</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}
@@ -159,7 +162,7 @@ const ContactFormFields: React.FC<ContactFormFieldsProps> = ({
           disabled={isSubmitting}
         >
           <span>
-            {isSubmitting ? "שולח..." : "לקבלת הצעה משתלמת – לחץ כאן"}
+            {isSubmitting ? t('formSubmitButtonLoading') : t('formSubmitButton')}
           </span>
         </Button>
       </form>
