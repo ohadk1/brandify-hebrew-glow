@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Starfield from '@/components/Starfield';
 import Hero from '@/components/Hero';
@@ -7,9 +8,9 @@ import WhyChooseUs from '@/components/WhyChooseUs';
 import LogoGallery from '@/components/LogoGallery';
 import Testimonial from '@/components/Testimonial';
 import ContactForm from '@/components/ContactForm';
-import WebsiteShowcase from '@/components/WebsiteShowcase';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
 import Footer from '@/components/Footer';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 const Index: React.FC = () => {
   // Add a smooth scroll handler for navigation links
@@ -64,6 +65,9 @@ const Index: React.FC = () => {
         דלג לתוכן העיקרי
       </a>
 
+      {/* Language Switcher */}
+      <LanguageSwitcher />
+
       {/* Darker gradient background underneath everything */}
       <div 
         className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#0b0f17] via-[#0a0d13] to-[#090c12] z-[-2]" 
@@ -83,7 +87,6 @@ const Index: React.FC = () => {
         <AboutUs />
         <Services />
         <LogoGallery />
-        <WebsiteShowcase />
         <WhyChooseUs />
         <Testimonial />
         <ContactForm />
